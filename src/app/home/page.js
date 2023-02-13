@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import Image from "next/image";
 
@@ -17,6 +18,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import SidebarLeft from "@/components/SidebarLeft";
+import { redirect } from 'next/navigation';
 
 export default function Home() {
   const navbarClass = {
@@ -26,7 +28,12 @@ export default function Home() {
   const sidebarLeftClass = {
     logout: "inline-flex w-full mt-[21.5rem]",
   }
-
+  
+  // Private route
+  const isLogin = localStorage.getItem('@userLogin')
+  if (!isLogin || isLogin == null || isLogin == undefined) {
+    redirect('/')
+  }
   return (
     <>
       <Navbar navbarClass={navbarClass} />

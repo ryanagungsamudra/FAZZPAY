@@ -1,5 +1,5 @@
 'use client'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
@@ -29,7 +29,7 @@ export default function Login() {
       // console.log(res.data.data.user.email)
       localStorage.setItem('@userLogin', JSON.stringify(res.data.data))
       toast.success('Login success!', {
-        position: "top-center",
+        position: "bottom-right",
         autoClose: 1500,
         hideProgressBar: true,
         closeOnClick: true,
@@ -44,7 +44,7 @@ export default function Login() {
     }).catch((err) => {
       // console.log(err.response.data.message);
       toast.error(err.response.data.message, {
-        position: "top-center",
+        position: "bottom-left",
         autoClose: 2000,
         hideProgressBar: true,
         closeOnClick: false,
@@ -54,6 +54,12 @@ export default function Login() {
         theme: "colored",
       })
     })
+  }
+
+  // private route
+  const isLogin = localStorage.getItem('@userLogin')
+  if (isLogin) {
+    redirect('/home')
   }
   return (
     <div className="container">

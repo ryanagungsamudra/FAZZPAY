@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import Image from "next/image";
 
@@ -22,6 +23,11 @@ export default function Success() {
   };
   const sidebarLeftClass = {
     logout: "inline-flex w-full mt-[29rem]",
+  }
+  // Private route
+  const isLogin = localStorage.getItem('@userLogin')
+  if (!isLogin || isLogin == null || isLogin == undefined) {
+    redirect('/')
   }
   return (
     <>

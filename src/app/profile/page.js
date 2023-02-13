@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import Image from "next/image";
 
@@ -11,6 +12,7 @@ import boby from "../../assets/boby.png";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SidebarLeft from "@/components/SidebarLeft";
+import { redirect } from "next/navigation";
 
 export default function Profile() {
   const navbarClass = {
@@ -19,6 +21,11 @@ export default function Profile() {
   };
   const sidebarLeftClass = {
     logout: "inline-flex w-full mt-[19rem]",
+  }
+  // Private route
+  const isLogin = localStorage.getItem('@userLogin')
+  if (!isLogin || isLogin == null || isLogin == undefined) {
+    redirect('/')
   }
   return (
     <>
