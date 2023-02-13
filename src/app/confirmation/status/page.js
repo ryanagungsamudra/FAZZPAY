@@ -15,6 +15,7 @@ import SidebarLeft from "@/components/SidebarLeft";
 
 import success from "../../../assets/home/success.png"
 import failed from "../../../assets/home/failed.png"
+import Cookies from "js-cookie";
 
 export default function Success() {
   const navbarClass = {
@@ -25,7 +26,7 @@ export default function Success() {
     logout: "inline-flex w-full mt-[29rem]",
   }
   // Private route
-  const isLogin = localStorage.getItem('@userLogin')
+  const isLogin = Cookies.get('userLogin')
   if (!isLogin || isLogin == null || isLogin == undefined) {
     redirect('/')
   }

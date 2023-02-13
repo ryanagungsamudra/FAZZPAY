@@ -18,6 +18,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SidebarLeft from "@/components/SidebarLeft";
 import { redirect } from "next/navigation";
+import Cookies from "js-cookie";
 
 export default function Transfer() {
   const navbarClass = {
@@ -28,7 +29,7 @@ export default function Transfer() {
     logout: "inline-flex w-full mt-[20rem]",
   }
   // Private route
-  const isLogin = localStorage.getItem('@userLogin')
+  const isLogin = Cookies.get('userLogin')
   if (!isLogin || isLogin == null || isLogin == undefined) {
     redirect('/')
   }

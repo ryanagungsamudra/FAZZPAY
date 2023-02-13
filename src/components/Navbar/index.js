@@ -1,19 +1,21 @@
-'use client'
+// 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import ava from '@/assets/ava.png'
 import { useRouter } from 'next/navigation'
+import Cookies from 'js-cookie'
 
 export default function Navbar({ navbarClass }) {
   const router = useRouter()
+  
   return (
     <div className={`${navbarClass.color} md:px-[6rem]`}>
       <div className="flex-1">
         <Link href='/' className={navbarClass.title}>FazzPay</Link>
       </div>
       <div className="flex-none gap-2">
-        {localStorage.getItem('@userLogin') ?
+        {Cookies.get('userLogin') ?
           (
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
@@ -30,8 +32,8 @@ export default function Navbar({ navbarClass }) {
                 <li><a>Settings</a></li>
                 <li>
                   <a onClick={() => {
-                    localStorage.removeItem('@userLogin')
-                    router.push('/')
+                    Cookies.remove('userLogin');
+                    router.push('/');
                   }}>
                   Logout
                   </a>

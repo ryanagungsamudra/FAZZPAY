@@ -18,6 +18,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SidebarLeft from "@/components/SidebarLeft";
 import { redirect } from "next/navigation";
+import Cookies from "js-cookie";
 
 export default function History() {
   const navbarClass = {
@@ -29,7 +30,7 @@ export default function History() {
   }
 
   // Private route
-  const isLogin = localStorage.getItem('@userLogin')
+  const isLogin = Cookies.get('userLogin')
   if (!isLogin || isLogin == null || isLogin == undefined) {
     redirect('/')
   }

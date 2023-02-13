@@ -9,6 +9,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import hero from '../../assets/authbackground.png'
 import innerHero from '../../assets/png-phone.png'
+import Cookies from 'js-cookie';
 
 export default function Login() {
   const url = process.env.NEXT_PUBLIC_API_URL
@@ -27,7 +28,8 @@ export default function Login() {
       data: loginForm
     }).then((res) => {
       // console.log(res.data.data.user.email)
-      localStorage.setItem('@userLogin', JSON.stringify(res.data.data))
+      Cookies.set('userLogin', res.data.data.user.id)
+      // localStorage.setItem('@userLogin', JSON.stringify(res.data.data))
       toast.success('Login success!', {
         position: "bottom-right",
         autoClose: 1500,
@@ -57,7 +59,7 @@ export default function Login() {
   }
 
   // private route
-  const isLogin = localStorage.getItem('@userLogin')
+  const isLogin = Cookies.get('userLogin')
   if (isLogin) {
     redirect('/home')
   }

@@ -9,6 +9,7 @@ import Link from "next/link"
 import Image from 'next/image'
 import hero from '../../assets/authbackground.png'
 import innerHero from '../../assets/png-phone.png'
+import Cookies from "js-cookie";
 
 export default function Signup() {
   const url = process.env.NEXT_PUBLIC_API_URL
@@ -58,7 +59,7 @@ export default function Signup() {
   }
 
   // private route
-  const isLogin = localStorage.getItem('@userLogin')
+  const isLogin = Cookies.get('userLogin')
   if (isLogin) {
     redirect('/home')
   }
