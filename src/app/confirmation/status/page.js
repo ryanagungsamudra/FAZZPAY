@@ -2,13 +2,7 @@
 import React from "react";
 import Image from "next/image";
 
-import arrowdown from "../../../assets/home/arrow-down.png";
-import arrowup from "../../../assets/home/arrow-up.png";
-import graphic from "../../../assets/home/graphic.png";
 import samuel from "../../../assets/samuel.png";
-import spotify from "../../../assets/spotify.png";
-import netflix from "../../../assets/netflix.png";
-import boby from "../../../assets/boby.png";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SidebarLeft from "@/components/SidebarLeft";
@@ -16,6 +10,7 @@ import SidebarLeft from "@/components/SidebarLeft";
 import success from "../../../assets/home/success.png"
 import failed from "../../../assets/home/failed.png"
 import Cookies from "js-cookie";
+import { redirect } from "next/navigation";
 
 export default function Success() {
   const navbarClass = {
