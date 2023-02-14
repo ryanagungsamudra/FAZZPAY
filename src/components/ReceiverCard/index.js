@@ -33,7 +33,7 @@ export default function ReceiverCard() {
                     }
                 }
                 return (
-                    <div className="flex items-center pl-6 pr-6 h-20 shadow-lg w-full mb-4 md:shadow-none">
+                    <div key={item.id} className="flex items-center pl-6 pr-6 h-20 shadow-lg w-full mb-4 md:shadow-none">
                         <div className="w-[20%]">
                             {isImg()}
                             {/* <Image className="w-[60%] p-2" width={500} height={500} src={ava} alt="" /> */}
