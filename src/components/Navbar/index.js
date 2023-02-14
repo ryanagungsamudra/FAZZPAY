@@ -4,26 +4,42 @@ import Link from 'next/link'
 import ava from '@/assets/man.png'
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 export default function Navbar({ navbarClass }) {
   const router = useRouter()
-  // const url = process.env.NEXT_PUBLIC_API_URL
-  // const id_user = Cookies.get('userLogin')
-  // const [dataUser, setDataUser] = useState([])
-  // const [imgUser, setImgUser] = useState([])
+  const url = process.env.NEXT_PUBLIC_API_URL
+  const [imgStatus, setImgStatus] = useState([])
+  const id_user = Cookies.get('userLogin')
+  const [imgUser, setImgUser] = useState([])
   const userFullName = Cookies.get('userFullName')
   const userPhoneNumber = Cookies.get('userPhoneNumber')
+
   // get data user
-  // useEffect(() => {
-  //   axios.get(`${url}/api/users/${id_user}`)
-  //     .then(res => {
-  //       setDataUser(res.data.data)
-  //       setImgUser(`${url}/uploads/images/${res.data.data.img_profile}`);
-  //     })
-  //     .catch((err) => console.log(err))
-  // }, [])
+  useEffect(() => {
+    axios.get(`${url}/api/users/${id_user}`)
+      .then(res => {
+        // setDataUser(res.data.data)
+        setImgStatus(res.data.data.img_profile)
+        setImgUser(`${url}/uploads/images/${res.data.data.img_profile}`);
+      })
+      .catch((err) => console.log(err))
+  }, [])
+
+  const isImg = () => {
+    if (imgStatus === undefined || imgStatus === null) {
+      return (
+        <Image width={500} height={500} src={ava} alt="" />
+      )
+    } else {
+      return (
+        <Image width={500} height={500} src={imgUser} alt="" />
+      )
+    }
+  }
   return (
-    <div className={`${navbarClass.color} md:px-[6rem] z-[9999]`}>
+    <div className={`${navbarClass.color} md:px-[6rem] drop-shadow-xl z-[9999]`}>
       <div className="flex-1">
         <Link href='/' className={navbarClass.title}>FazzPay</Link>
         <div className={`flex ${navbarClass.nav}`}>
@@ -43,14 +59,14 @@ export default function Navbar({ navbarClass }) {
               <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className={`w-10 rounded-full ${navbarClass.outline}`}>
-                    <Image src={ava} />
+                    {isImg()}
                   </div>
                 </label>
                 <ul tabIndex={0} className="mt-3 p-2 menu menu-compact dropdown-content bg-base-100 rounded-box w-40 shadow-lg border-2">
                   <li>
                     <a className="justify-between" onClick={() => {
-                        router.push('/profile')
-                      }}>
+                      router.push('/profile')
+                    }}>
                       Profile
                     </a>
                   </li>
@@ -62,7 +78,7 @@ export default function Navbar({ navbarClass }) {
                       Cookies.remove('userPhoneNumber')
                       router.push('/');
                     }}>
-                    Logout
+                      Logout
                     </a>
                   </li>
                 </ul>

@@ -2,23 +2,12 @@
 import React from "react";
 import Image from "next/image";
 
-import dashboard from "../../assets/home/grid.png";
-import transfer from "../../assets/home/arrow-up-side.svg";
-import topup from "../../assets/home/plus.png";
-import profile from "../../assets/home/user.png";
-import logout from "../../assets/home/log-out.png";
-import arrowdown from "../../assets/home/arrow-down.png";
-import arrowup from "../../assets/home/arrow-up.png";
-import graphic from "../../assets/home/graphic.png";
-import samuel from "../../assets/samuel.png";
-import spotify from "../../assets/spotify.png";
-import netflix from "../../assets/netflix.png";
-import boby from "../../assets/boby.png";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SidebarLeft from "@/components/SidebarLeft";
 import { redirect } from "next/navigation";
 import Cookies from "js-cookie";
+import ReceiverCard from "@/components/ReceiverCard";
 
 export default function Transfer() {
   const navbarClass = {
@@ -30,6 +19,7 @@ export default function Transfer() {
   const sidebarLeftClass = {
     logout: "inline-flex w-full mt-[20rem]",
   }
+
   // Private route
   const isLogin = Cookies.get('userLogin')
   if (!isLogin || isLogin == null || isLogin == undefined) {
@@ -41,7 +31,7 @@ export default function Transfer() {
 
       <div className="container mx-auto mt-[5rem] md:flex md:px-[6rem]">
         {/* Left Side Start */}
-        <SidebarLeft sidebarLeftClass={sidebarLeftClass}/>
+        <SidebarLeft sidebarLeftClass={sidebarLeftClass} />
         {/* Left Side End */}
 
         {/* Right Side Start */}
@@ -87,7 +77,7 @@ export default function Transfer() {
             {/* main-center start */}
             <div className="md:w-full">
               <div>
-                <h1 className="font-bold text-[18px] w-full px-[2.5rem]">
+                <h1 className="font-bold text-[18px] w-full px-[2.5rem] pt-8">
                   Search Receiver
                 </h1>
                 <div className="relative w-[92%] mx-auto">
@@ -136,60 +126,7 @@ export default function Transfer() {
 
               {/* Transaction history start */}
               <div className="flex flex-wrap pb-10">
-                <div className="flex items-center pl-6 pr-6 h-20 shadow-lg w-full mb-4 md:shadow-none">
-                  <div className="w-[20%]">
-                    <Image className="w-[60%] p-2" src={samuel} alt="" />
-                  </div>
-                  <div className="w-[45%]">
-                    <h1 className="text-base font-bold">Samuel Suhi</h1>
-                    <p className="text-sm font-normal">Transfer</p>
-                  </div>
-                </div>
-                <div className="flex items-center pl-6 pr-6 h-20 shadow-lg w-full mb-4 md:shadow-none">
-                  <div className="w-[20%] ">
-                    <Image className="w-[60%] p-2" src={spotify} alt="" />
-                  </div>
-                  <div className="w-[45%]">
-                    <h1 className="text-base font-bold">Spotify</h1>
-                    <p className="text-sm font-normal">Subscription</p>
-                  </div>
-                </div>
-                <div className="flex items-center pl-6 pr-6 h-20 shadow-lg w-full mb-4 md:shadow-none">
-                  <div className="w-[20%]">
-                    <Image className="w-[60%] p-2" src={netflix} alt="" />
-                  </div>
-                  <div className="w-[45%]">
-                    <h1 className="text-base font-bold">Netflix</h1>
-                    <p className="text-sm font-normal">Subscription</p>
-                  </div>
-                </div>
-                <div className="flex items-center pl-6 pr-6 h-20 shadow-lg w-full mb-4 md:shadow-none">
-                  <div className="w-[20%]">
-                    <Image className="w-[60%] p-2" src={boby} alt="" />
-                  </div>
-                  <div className="w-[45%]">
-                    <h1 className="text-base font-bold">Bobi Sammy</h1>
-                    <p className="text-sm font-normal">Transfer</p>
-                  </div>
-                </div>
-                <div className="flex items-center pl-6 pr-6 h-20 shadow-lg w-full mb-4 md:shadow-none">
-                  <div className="w-[20%]">
-                    <Image className="w-[60%] p-2" src={boby} alt="" />
-                  </div>
-                  <div className="w-[45%]">
-                    <h1 className="text-base font-bold">Bobi Sammy</h1>
-                    <p className="text-sm font-normal">Transfer</p>
-                  </div>
-                </div>
-                <div className="flex items-center pl-6 pr-6 h-20 shadow-lg w-full mb-4 md:shadow-none">
-                  <div className="w-[20%]">
-                    <Image className="w-[60%] p-2" src={boby} alt="" />
-                  </div>
-                  <div className="w-[45%]">
-                    <h1 className="text-base font-bold">Bobi Sammy</h1>
-                    <p className="text-sm font-normal">Transfer</p>
-                  </div>
-                </div>
+                <ReceiverCard />
               </div>
               {/* Transaction history end */}
             </div>

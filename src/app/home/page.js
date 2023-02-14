@@ -1,5 +1,5 @@
 'use client'
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import dashboard from "../../assets/home/grid.png";
@@ -20,6 +20,7 @@ import Link from "next/link";
 import SidebarLeft from "@/components/SidebarLeft";
 import { redirect } from 'next/navigation';
 import Cookies from "js-cookie";
+import axios from "axios";
 
 export default function Home() {
   const navbarClass = {
@@ -31,7 +32,17 @@ export default function Home() {
   const sidebarLeftClass = {
     logout: "inline-flex w-full mt-[21.5rem]",
   }
-  
+
+  // GET USER DATA WITH AXIOS
+  const url = process.env.NEXT_PUBLIC_API_URL
+  const userId = Cookies.get('userLogin')
+  const [dataUser, setDataUser] = useState([])
+  useEffect(() => {
+    axios.get(`${url}/api/users/${userId}`)
+      .then(res => setDataUser(res.data.data))
+      .catch((err) => console.log(err))
+  }, [])
+
   // Private route
   const isLogin = Cookies.get('userLogin')
   if (!isLogin || isLogin == null || isLogin == undefined) {
@@ -43,7 +54,7 @@ export default function Home() {
       <div className="container mx-auto mt-[5rem] md:flex md:px-[6rem] md:pb-[2rem]">
 
         {/* Left Side Start */}
-        <SidebarLeft sidebarLeftClass={sidebarLeftClass}/>
+        <SidebarLeft sidebarLeftClass={sidebarLeftClass} />
         {/* Left Side End */}
 
         {/* Right Side Start */}
@@ -56,16 +67,16 @@ export default function Home() {
               </h1>
             </div>
           </div>
-          <div className="flex flex-wrap items-center pl-6 w-[89vw] h-[20vh] mt-6 rounded-[20px] bg-primary mx-auto md:w-full md:h-[190px] md:justify-between md:pl-[5rem]">
+          <div className="flex flex-wrap items-center pl-6 w-[89vw] h-[20vh] mt-14 rounded-[20px] bg-primary mx-auto md:w-full md:h-[190px] md:justify-between md:pl-[5rem]">
             <div className="md:w-1/2">
               <p className="w-full text-secondary font-normal text-sm pt-4 md:text-[18px]">
                 Balance
               </p>
               <h1 className="w-full text-secondary font-bold text-2xl md:text-[40px] md:py-5">
-                Rp120.000
+                {`Rp${dataUser.balance}`}
               </h1>
               <p className="w-full text-secondary font-semibold text-sm pb-4 md:text-[14px]">
-                +62 813-9387-7946
+                {dataUser.phone}
               </p>
             </div>
             <div className="hidden md:flex md:flex-col">
@@ -92,12 +103,12 @@ export default function Home() {
                 <div className="w-1/2">
                   <Image className="mx-auto" src={arrowdown} alt="" />
                   <p>Income</p>
-                  <p>Rp2.120.000</p>
+                  <p>{`Rp${dataUser.income}`}</p>
                 </div>
                 <div className="w-1/2">
                   <Image className="mx-auto" src={arrowup} alt="" />
                   <p>Expense</p>
-                  <p>Rp1.560.000</p>
+                  <p>{`Rp${dataUser.expense}`}</p>
                 </div>
               </div>
               <Image className="pt-[7rem] pl-[2rem]" src={graphic} alt="" />
