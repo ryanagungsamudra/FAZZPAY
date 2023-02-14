@@ -2,11 +2,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
-import dashboard from "../../assets/home/grid.png";
-import transfer from "../../assets/home/arrow-up-side.svg";
-import topup from "../../assets/home/plus.png";
-import profile from "../../assets/home/user.png";
-import logout from "../../assets/home/log-out.png";
 import arrowdown from "../../assets/home/arrow-down.png";
 import arrowup from "../../assets/home/arrow-up.png";
 import graphic from "../../assets/home/graphic.png";
