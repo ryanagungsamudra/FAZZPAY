@@ -12,6 +12,12 @@ const nextConfig = {
         port: '5000',
         pathname: '/uploads/images/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'yannnfazzpay.vercel.app',
+        port: '',
+        pathname: '/_next/**',
+      },
     ],
   },
 }
