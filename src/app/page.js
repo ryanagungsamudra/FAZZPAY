@@ -25,7 +25,7 @@ export default function Home() {
       {/* Navbar start */}
       <Navbar navbarClass={navbarClass} />
       {/* Navbar End */}
-      <Image className='absolute -z-10' src={bgPrimary} />
+      <Image alt='img' className='absolute -z-10' src={bgPrimary} />
 
       {/* Section 1 start */}
       <section className='z-0'>
@@ -38,7 +38,7 @@ export default function Home() {
           </div>
 
           <div className='md:w-1/2 lg:w-1/2 mt-[5.5rem]'>
-            <Image src={innerHero} />
+            <Image alt='img' src={innerHero} />
           </div>
         </div>
       </section>
@@ -46,7 +46,7 @@ export default function Home() {
 
       {/* Section 2 start */}
       <section className='flex items-center ml-[2rem] h-[300px] w-full rounded-2xl'>
-        <Image className='w-full' src={sponsored} />
+        <Image alt='img' className='w-full' src={sponsored} />
       </section>
       <div className='pl-[3.5rem] bg-[#473AD1]/5 w-[98.9vw]'>
         <div className="flex flex-wrap text-center pt-[6rem]">
@@ -55,17 +55,17 @@ export default function Home() {
         </div>
         <div className="flex justify-evenly mt-[4rem]">
           <div className="w-[367px] h-[344px] bg-[#fffafa] border-2 rounded-[25px] shadow-xl flex flex-wrap items-center py-[2rem]">
-            <Image className='mx-auto' src={phone} />
+            <Image alt='img' className='mx-auto' src={phone} />
             <h1 className='w-full text-center text-[24px] font-bold'>24/7 Support</h1>
             <p className='w-full text-center text-[18px] font-normal'>We have 24/7 contact support so you <br />can contact us whenever you want <br />and we will respond it.</p>
           </div>
           <div className="w-[367px] h-[344px] bg-[#fffafa] border-2 rounded-[25px] shadow-xl flex flex-wrap items-center py-[2rem]">
-            <Image className='mx-auto' src={lock} />
+            <Image alt='img' className='mx-auto' src={lock} />
             <h1 className='w-full text-center text-[24px] font-bold'>Data Privacy</h1>
             <p className='w-full text-center text-[18px] font-normal'>We make sure your data is safe in our <br />database and we will encrypt any <br />data you submitted to us.</p>
           </div>
           <div className="w-[367px] h-[344px] bg-[#fffafa] border-2 rounded-[25px] shadow-xl flex flex-wrap items-center py-[2rem]">
-            <Image className='mx-auto' src={download} />
+            <Image alt='img' className='mx-auto' src={download} />
             <h1 className='w-full text-center text-[24px] font-bold'>Easy Download</h1>
             <p className='w-full text-center text-[18px] font-normal'>Zwallet is 100% totally free to use it’s <br />now available on Google Play Store <br />and App Store.</p>
           </div>
@@ -76,8 +76,8 @@ export default function Home() {
       {/* Section 3 start */}
       <section className='flex flex-wrap mt-[8rem] pl-[3.5rem]'>
         <div className='w-1/2'>
-          <Image src={phone1section3} />
-          <Image className='-mt-[6rem]' src={phone2section3} />
+          <Image alt='img' src={phone1section3} />
+          <Image alt='img' className='-mt-[6rem]' src={phone2section3} />
         </div>
         <div className='w-1/2'>
           <h1 className='text-[60px] font-extrabold mt-[7rem]'>All The <span className='text-primary'>Great</span><br />FazzPay Features.</h1>
@@ -101,13 +101,13 @@ export default function Home() {
       {/* Section 4 start */}
       <section className='text-center pt-[6rem] pl-[4.5rem]'>
         <h1 className='text-[60px] font-extrabold'>What Users are <span className='text-primary'>Saying.</span></h1>
-        <p className='text-[18px] font-normal pt-4'>We have some great features from the application and it’s totally free <br/>to use by all users around the world.</p>
+        <p className='text-[18px] font-normal pt-4'>We have some great features from the application and it’s totally free <br />to use by all users around the world.</p>
         {/* Carousel start */}
         <div className="carousel my-[4rem]">
           <div id="slide1" className="carousel-item relative w-full justify-center">
             <div className="card w-[55vw] rounded-[30px] bg-base-100 shadow-lg border-2">
               <figure className="px-10 pt-10">
-                <Image src={carousel} alt="Shoes" className="rounded-xl" />
+                <Image alt='img' src={carousel} alt="Shoes" className="rounded-xl" />
               </figure>
               <div className="card-body items-center text-center">
                 <h2 className="card-title">Alex Hansinburg</h2>
@@ -123,7 +123,7 @@ export default function Home() {
           <div id="slide2" className="carousel-item relative w-full justify-center">
             <div className="card w-[55vw] rounded-[30px] bg-base-100 shadow-lg border-2">
               <figure className="px-10 pt-10">
-                <Image src={carousel} alt="Shoes" className="rounded-xl" />
+                <Image alt='img' src={carousel} alt="Shoes" className="rounded-xl" />
               </figure>
               <div className="card-body items-center text-center">
                 <h2 className="card-title">Alex Hansinburg</h2>
@@ -139,7 +139,7 @@ export default function Home() {
           <div id="slide3" className="carousel-item relative w-full justify-center">
             <div className="card w-[55vw] rounded-[30px] bg-base-100 shadow-lg border-2">
               <figure className="px-10 pt-10">
-                <Image src={carousel} alt="Shoes" className="rounded-xl" />
+                <Image alt='img' src={carousel} alt="Shoes" className="rounded-xl" />
               </figure>
               <div className="card-body items-center text-center">
                 <h2 className="card-title">Alex Hansinburg</h2>
@@ -160,7 +160,7 @@ export default function Home() {
       {/* Footer start */}
       <div className='pl-28 pt-[5rem] bg-primary h-[438px] w-[98.9vw]'>
         <h1 className='text-secondary text-[36px] font-bold'>FazzPay</h1>
-        <p className='text-secondary/75 mt-[2rem]'>Simplify financial needs and saving <br/>much time in banking needs with <br/>one single app.</p>
+        <p className='text-secondary/75 mt-[2rem]'>Simplify financial needs and saving <br />much time in banking needs with <br />one single app.</p>
         <div className='flex justify-between pr-[6rem] border-t mt-[4rem]'>
           <p className='text-secondary/90 pt-[2rem]'>2022 FazzPay. All right reserved.</p>
           <p className='text-secondary pt-[2rem]'>+62 8228 4798 890</p>

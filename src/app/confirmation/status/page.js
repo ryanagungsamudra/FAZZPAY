@@ -33,7 +33,7 @@ export default function Success() {
 
       <div className="container mx-auto mt-[5rem] md:flex md:px-[6rem] md:pb-10">
         {/* Left Side Start */}
-        <SidebarLeft sidebarLeftClass={sidebarLeftClass}/>
+        <SidebarLeft sidebarLeftClass={sidebarLeftClass} />
         {/* Left Side End */}
 
         {/* Right Side Start */}
@@ -79,18 +79,18 @@ export default function Success() {
             {/* main-center start */}
             <div className="md:w-full">
               {/* Transfer detail start */}
-            
-            {/* status element start */}
-            <div className="flex flex-wrap justify-center">
-                <Image src={success}/>
+
+              {/* status element start */}
+              <div className="flex flex-wrap justify-center">
+                <Image alt="img" src={success} />
                 <h1 className="w-full text-center py-4 text-[22px] font-bold">Transfer Success</h1>
-            </div>
-            {/* <div className="flex flex-wrap justify-center">
-                <Image src={failed}/>
+              </div>
+              {/* <div className="flex flex-wrap justify-center">
+                <Image alt="img" src={failed}/>
                 <h1 className="w-full text-center py-4 text-[22px] font-bold">Transfer Failed</h1>
                 <p className="w-full text-center text-[16px] font-normal">We can’t transfer your money at the moment, we recommend you to check your <br/>internet connection and try again.</p>
             </div> */}
-            {/* status element end */}
+              {/* status element end */}
 
               {/* Details start */}
               <div className="px-[1.5rem] mx-6 py-4 mt-6 border-2 rounded-[10px]">
@@ -123,7 +123,7 @@ export default function Success() {
                 <div className="flex flex-wrap pb-[1.5rem] mt-[1.5rem] mx-6">
                   <div className="flex items-center pl-6 pr-6 h-20 shadow-lg w-full mb-4 md:shadow-none">
                     <div className="w-[20%]">
-                      <Image className="w-[60%] p-2" src={samuel} alt="" />
+                      <Image className="w-[60%] p-2" src={samuel} alt="img" />
                     </div>
                     <div className="w-[45%]">
                       <h1 className="text-base font-bold">Samuel Suhi</h1>
@@ -135,7 +135,7 @@ export default function Success() {
 
               <div className="flex">
                 <div className="btn btn-primary bg-primary/5 normal-case text-primary md:w-[22%] md:ml-[24rem]">
-                    Download PDF
+                  Download PDF
                 </div>
                 <div className="btn btn-primary bg-primary normal-case mb-8 md:w-[22%] md:ml-4">
                   <p>Back to home</p>
