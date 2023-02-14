@@ -107,7 +107,7 @@ export default function Home() {
           <div id="slide1" className="carousel-item relative w-full justify-center">
             <div className="card w-[55vw] rounded-[30px] bg-base-100 shadow-lg border-2">
               <figure className="px-10 pt-10">
-                <Image alt='img' src={carousel} alt="Shoes" className="rounded-xl" />
+                <Image src={carousel} alt="Shoes" className="rounded-xl" />
               </figure>
               <div className="card-body items-center text-center">
                 <h2 className="card-title">Alex Hansinburg</h2>
@@ -123,7 +123,7 @@ export default function Home() {
           <div id="slide2" className="carousel-item relative w-full justify-center">
             <div className="card w-[55vw] rounded-[30px] bg-base-100 shadow-lg border-2">
               <figure className="px-10 pt-10">
-                <Image alt='img' src={carousel} alt="Shoes" className="rounded-xl" />
+                <Image src={carousel} alt="Shoes" className="rounded-xl" />
               </figure>
               <div className="card-body items-center text-center">
                 <h2 className="card-title">Alex Hansinburg</h2>
@@ -139,7 +139,7 @@ export default function Home() {
           <div id="slide3" className="carousel-item relative w-full justify-center">
             <div className="card w-[55vw] rounded-[30px] bg-base-100 shadow-lg border-2">
               <figure className="px-10 pt-10">
-                <Image alt='img' src={carousel} alt="Shoes" className="rounded-xl" />
+                <Image src={carousel} alt="Shoes" className="rounded-xl" />
               </figure>
               <div className="card-body items-center text-center">
                 <h2 className="card-title">Alex Hansinburg</h2>

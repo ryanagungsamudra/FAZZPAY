@@ -25,7 +25,7 @@ export default function Navbar({ navbarClass }) {
         setImgUser(`${url}/uploads/images/${res.data.data.img_profile}`);
       })
       .catch((err) => console.log(err))
-  }, [])
+  }, [url, id_user])
 
   const isImg = () => {
     if (imgStatus === undefined || imgStatus === null) {

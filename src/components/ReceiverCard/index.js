@@ -15,7 +15,7 @@ export default function ReceiverCard() {
         axios.get(`${url}/api/users/`)
             .then(res => setDataReceiver(res.data.data))
             .catch((err) => console.log(err))
-    }, [])
+    }, [url])
 
     return (
         dataReceiver.map((item) => {

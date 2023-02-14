@@ -36,7 +36,7 @@ export default function Home() {
     axios.get(`${url}/api/users/${userId}`)
       .then(res => setDataUser(res.data.data))
       .catch((err) => console.log(err))
-  }, [])
+  }, [url, userId])
 
   // Private route
   const isLogin = Cookies.get('userLogin')
