@@ -1,29 +1,29 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
 import ava from '@/assets/man.png'
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
-import axios from 'axios'
 
 export default function Navbar({ navbarClass }) {
   const router = useRouter()
-  const url = process.env.NEXT_PUBLIC_API_URL
-  const id_user = Cookies.get('userLogin')
-  const [dataUser, setDataUser] = useState([])
-  const [imgUser, setImgUser] = useState([])
+  // const url = process.env.NEXT_PUBLIC_API_URL
+  // const id_user = Cookies.get('userLogin')
+  // const [dataUser, setDataUser] = useState([])
+  // const [imgUser, setImgUser] = useState([])
+  const userFullName = Cookies.get('userFullName')
+  const userPhoneNumber = Cookies.get('userPhoneNumber')
   // get data user
-  useEffect(() => {
-    axios.get(`${url}/api/users/${id_user}`)
-      .then(res => {
-        setDataUser(res.data.data)
-        setImgUser(`${url}/uploads/images/${res.data.data.img_profile}`);
-      })
-      .catch((err) => console.log(err))
-  }, [])
+  // useEffect(() => {
+  //   axios.get(`${url}/api/users/${id_user}`)
+  //     .then(res => {
+  //       setDataUser(res.data.data)
+  //       setImgUser(`${url}/uploads/images/${res.data.data.img_profile}`);
+  //     })
+  //     .catch((err) => console.log(err))
+  // }, [])
   return (
-    <div className={`${navbarClass.color} md:px-[6rem]`}>
+    <div className={`${navbarClass.color} md:px-[6rem] z-[9999]`}>
       <div className="flex-1">
         <Link href='/' className={navbarClass.title}>FazzPay</Link>
         <div className={`flex ${navbarClass.nav}`}>
@@ -37,8 +37,8 @@ export default function Navbar({ navbarClass }) {
           (
             <>
               <div className='flex flex-wrap text-end'>
-                <h1 className={`w-full text-lg font-semibold ${navbarClass.name}`}>{dataUser.full_name}</h1>
-                <p className={`w-full text-sm font-normal ${navbarClass.phone}`}>{dataUser.phone}</p>
+                <h1 className={`w-full text-lg font-semibold ${navbarClass.name}`}>{userFullName}</h1>
+                <p className={`w-full text-sm font-normal ${navbarClass.phone}`}>{userPhoneNumber}</p>
               </div>
               <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
@@ -46,7 +46,7 @@ export default function Navbar({ navbarClass }) {
                     <Image src={ava} />
                   </div>
                 </label>
-                <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                <ul tabIndex={0} className="mt-3 p-2 menu menu-compact dropdown-content bg-base-100 rounded-box w-40 shadow-lg border-2">
                   <li>
                     <a className="justify-between" onClick={() => {
                         router.push('/profile')
@@ -58,6 +58,8 @@ export default function Navbar({ navbarClass }) {
                   <li>
                     <a onClick={() => {
                       Cookies.remove('userLogin');
+                      Cookies.remove('userFullName')
+                      Cookies.remove('userPhoneNumber')
                       router.push('/');
                     }}>
                     Logout

@@ -27,8 +27,10 @@ export default function Login() {
       method: 'POST',
       data: loginForm
     }).then((res) => {
-      // console.log(res.data.data.user.email)
+      // console.log(res.data.data.user)
       Cookies.set('userLogin', res.data.data.user.id)
+      Cookies.set('userFullName', res.data.data.user.full_name)
+      Cookies.set('userPhoneNumber', res.data.data.user.phone)
       // localStorage.setItem('@userLogin', JSON.stringify(res.data.data))
       toast.success('Login success!', {
         position: "bottom-right",
