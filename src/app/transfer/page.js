@@ -24,6 +24,7 @@ export default function Transfer() {
   const navbarClass = {
     color: "navbar bg-secondary/80 fixed top-0 left-0 z-50s py-6 rounded-b-lg",
     title: "btn btn-ghost normal-case text-[29px] font-bold text-primary",
+    nav: "hidden"
   };
   const sidebarLeftClass = {
     logout: "inline-flex w-full mt-[20rem]",
@@ -31,7 +32,7 @@ export default function Transfer() {
   // Private route
   const isLogin = Cookies.get('userLogin')
   if (!isLogin || isLogin == null || isLogin == undefined) {
-    redirect('/')
+    redirect('/login')
   }
   return (
     <>

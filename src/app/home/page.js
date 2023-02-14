@@ -2,11 +2,6 @@
 import React from "react";
 import Image from "next/image";
 
-import dashboard from "../../assets/home/grid.png";
-import transfer from "../../assets/home/arrow-up-side.svg";
-import topup from "../../assets/home/plus.png";
-import profile from "../../assets/home/user.png";
-import logout from "../../assets/home/log-out.png";
 import arrowdown from "../../assets/home/arrow-down.png";
 import arrowup from "../../assets/home/arrow-up.png";
 import graphic from "../../assets/home/graphic.png";
@@ -18,6 +13,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import SidebarLeft from "@/components/SidebarLeft";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { redirect } from 'next/navigation';
 import Cookies from "js-cookie";
 
@@ -25,6 +23,7 @@ export default function Home() {
   const navbarClass = {
     color: "navbar bg-secondary/80 fixed top-0 left-0 z-50s py-6 rounded-b-lg",
     title: "btn btn-ghost normal-case text-[29px] font-bold text-primary",
+    nav: "hidden"
   };
   const sidebarLeftClass = {
     logout: "inline-flex w-full mt-[21.5rem]",
@@ -33,7 +32,17 @@ export default function Home() {
   // Private route
   const isLogin = Cookies.get('userLogin')
   if (!isLogin || isLogin == null || isLogin == undefined) {
-    redirect('/')
+    toast.error('You must login to access this page', {
+      position: "bottom-left",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    })
+    redirect('/login')
   }
   return (
     <>
@@ -175,6 +184,7 @@ export default function Home() {
 
       </div>
       <Footer />
+      <ToastContainer limit={1} />
     </>
   );
 }
