@@ -16,6 +16,9 @@ export default function Home() {
   const navbarClass = {
     color: "navbar bg-primary/80 fixed top-0 left-0 z-50 py-6 rounded-b-lg",
     title: "btn btn-ghost normal-case text-[29px] font-bold text-secondary",
+    name: "text-secondary",
+    phone: "text-secondary",
+    outline: "outline outline-secondary/60 outline-2"
   }
   return (
     <div className='container'>

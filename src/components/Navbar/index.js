@@ -1,14 +1,27 @@
-// 'use client'
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
-import ava from '@/assets/ava.png'
+import React, { useEffect, useState } from 'react'
+import ava from '@/assets/man.png'
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
+import axios from 'axios'
 
 export default function Navbar({ navbarClass }) {
   const router = useRouter()
-  
+  const url = process.env.NEXT_PUBLIC_API_URL
+  const id_user = Cookies.get('userLogin')
+  const [dataUser, setDataUser] = useState([])
+  const [imgUser, setImgUser] = useState([])
+  // get data user
+  useEffect(() => {
+    axios.get(`${url}/api/users/${id_user}`)
+      .then(res => {
+        setDataUser(res.data.data)
+        setImgUser(`${url}/uploads/images/${res.data.data.img_profile}`);
+      })
+      .catch((err) => console.log(err))
+  }, [])
   return (
     <div className={`${navbarClass.color} md:px-[6rem]`}>
       <div className="flex-1">
@@ -22,31 +35,37 @@ export default function Navbar({ navbarClass }) {
       <div className="flex-none gap-2">
         {Cookies.get('userLogin') ?
           (
-            <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full outline outline-secondary/60 outline-2">
-                  <Image src={ava} />
-                </div>
-              </label>
-              <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                <li>
-                  <a className="justify-between" onClick={() => {
-                      router.push('/profile')
+            <>
+              <div className='flex flex-wrap text-end'>
+                <h1 className={`w-full text-lg font-semibold ${navbarClass.name}`}>{dataUser.full_name}</h1>
+                <p className={`w-full text-sm font-normal ${navbarClass.phone}`}>{dataUser.phone}</p>
+              </div>
+              <div className="dropdown dropdown-end">
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                  <div className={`w-10 rounded-full ${navbarClass.outline}`}>
+                    <Image src={ava} />
+                  </div>
+                </label>
+                <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                  <li>
+                    <a className="justify-between" onClick={() => {
+                        router.push('/profile')
+                      }}>
+                      Profile
+                    </a>
+                  </li>
+                  <li><a>Settings</a></li>
+                  <li>
+                    <a onClick={() => {
+                      Cookies.remove('userLogin');
+                      router.push('/');
                     }}>
-                    Profile
-                  </a>
-                </li>
-                <li><a>Settings</a></li>
-                <li>
-                  <a onClick={() => {
-                    Cookies.remove('userLogin');
-                    router.push('/');
-                  }}>
-                  Logout
-                  </a>
-                </li>
-              </ul>
-            </div>
+                    Logout
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </>
           )
           :
           (

@@ -19,7 +19,8 @@ export default function Profile() {
   const navbarClass = {
     color: "navbar bg-secondary/80 fixed top-0 left-0 z-50s py-6 rounded-b-lg",
     title: "btn btn-ghost normal-case text-[29px] font-bold text-primary",
-    nav: "hidden"
+    nav: "hidden",
+    outline: "outline outline-primary/60 outline-2"
   };
   const sidebarLeftClass = {
     logout: "inline-flex w-full mt-[19rem]",
