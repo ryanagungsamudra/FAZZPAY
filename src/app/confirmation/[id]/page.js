@@ -139,7 +139,7 @@ export default function Confirmation() {
         {/* Left Side End */}
 
         {/* Right Side Start */}
-        <div className="w-full md:w-[70%] md:border">
+        <div className="w-full md:w-[70%] mt-[3rem]">
           <div className="flex items-center pl-6 pt-[2rem] md:hidden">
             <div className="w-[50%] flex-1">
               <h1>

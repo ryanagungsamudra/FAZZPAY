@@ -27,7 +27,7 @@ export default function ReceiverCard() {
 
     return (
         <>
-            <h1 className="font-bold text-[18px] w-full px-[2.5rem] pt-8">
+            <h1 className="font-bold text-[18px] w-full px-[2.5rem]">
                 Search Receiver
             </h1>
             <div className="relative w-[92%] mx-auto">
@@ -74,7 +74,7 @@ export default function ReceiverCard() {
                 </button>
             </div>
 
-            <div className="flex flex-wrap pb-10">
+            <div className="flex flex-wrap">
                 {dataReceiver.map((item) => {
                     if (userId !== item.id) {
                         const img = `${url}/uploads/images/${item.img_profile}`

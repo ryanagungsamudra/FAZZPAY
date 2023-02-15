@@ -29,13 +29,13 @@ export default function Transfer() {
     <>
       <Navbar navbarClass={navbarClass} />
 
-      <div className="container mx-auto mt-[5rem] md:flex md:px-[6rem]">
+      <div className="container mx-auto mt-[7rem] mb-[2.5rem] md:flex md:px-[6rem]">
         {/* Left Side Start */}
         <SidebarLeft sidebarLeftClass={sidebarLeftClass} />
         {/* Left Side End */}
 
         {/* Right Side Start */}
-        <div className="w-full md:w-[70%] md:border">
+        <div className="w-full md:w-[70%]">
           <div className="flex items-center pl-6 pt-[2rem] md:hidden">
             <div className="w-[50%] flex-1">
               <h1>

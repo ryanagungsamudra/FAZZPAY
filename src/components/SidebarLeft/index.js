@@ -64,7 +64,7 @@ export default function SidebarLeft({ sidebarLeftClass }) {
   return (
     <>
       <ToastContainer transition={Zoom} />
-      <div className="hidden md:block md:w-[30%] md:shadow-lg md:pl-[1rem]">
+      <div className="hidden md:block md:w-[25%] md:shadow-lg md:pl-[1.5rem] md:pr-4 md:mt-[3.5rem] md:border-2 md:rounded-[20px]">
         <div className="inline-flex w-full mt-[4.5rem]">
           <Image src={dashboard} alt="" />
           <Link href='/home' className="text-lg font-bold ml-8 cursor-pointer hover:text-primary">Dashboard</Link>
@@ -111,10 +111,6 @@ export default function SidebarLeft({ sidebarLeftClass }) {
           <Link href='/profile' className="text-lg font-bold ml-8 cursor-pointer hover:text-primary">Profile</Link>
         </div>
 
-        <div className={sidebarLeftClass.logout}>
-          <Image src={logout} alt="" />
-          <p className="text-lg font-bold ml-8 cursor-pointer hover:text-primary">Logout</p>
-        </div>
       </div>
     </>
   );

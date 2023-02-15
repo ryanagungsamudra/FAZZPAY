@@ -8,7 +8,6 @@ import SidebarLeft from "@/components/SidebarLeft";
 import { redirect } from "next/navigation";
 import Cookies from "js-cookie";
 import axios from "axios";
-import { useRouter } from "next/router";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -26,7 +25,6 @@ export default function Profile() {
   // GET USER DATA WITH AXIOS
   const url = process.env.NEXT_PUBLIC_API_URL
   const userLogin = Cookies.get('userLogin')
-  // const router = useRouter();
 
   const [userData, setUserData] = useState([])
   const [imageCurrent, setImageCurrent] = useState('')
@@ -47,81 +45,55 @@ export default function Profile() {
       .catch((err) => console.log(err))
   }, [])
 
-  // const handleProfileChange = async (e) => {
-  //   e.preventDefault();
-  //   const body = new FormData();
-  //   body.append('full_name', firstName + lastName);
-  //   body.append('email', email);
-  //   body.append('phone', phone);
-  //   body.append('img_profile', image);
-
-  //   return await axios.patch(`${url}/api/users/${userLogin}`, body, {
-  //     method: 'PATCH',
-  //     headers: {
-  //       'Content-type': 'multipart/form-data',
-  //     }
-  //   }).then((res) => {
-  //     console.log(res.data.data);
-  //     toast.success("Edit profile success!", {
-  //       position: "top-center",
-  //       autoClose: 1500,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "colored",
-  //     });
-  //     setTimeout(() => {
-  //       window.location.reload();
-  //     }, 1500);
-  //   }).catch((err) => {
-  //     // console.log(err);
-  //     toast.error("Sorry, something was wrong", {
-  //       position: "bottom-left",
-  //       autoClose: 2000,
-  //       hideProgressBar: true,
-  //       closeOnClick: false,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "colored",
-  //     })
-  //   })
-  // }
-
-  const handleProfileChange = async (e) => {
+  const onImageUpload = (e) => {
     e.preventDefault();
+    const file = e.target.files[0];
+    setImage(file)
+    setImagePreview(URL.createObjectURL(file))
+  }
+
+  const handleSubmit = () => {
     const body = new FormData();
     body.append('full_name', `${firstName} ${lastName}`);
     body.append('email', email);
     body.append('phone', phone);
     body.append('img_profile', image);
 
-    try {
-      await axios.patch(`${url}/api/users/${userLogin}`, body, {
-        method: 'PATCH',
-        headers: {
-          'Content-type': 'multipart/form-data',
-        }
+    axios.patch(`${url}/api/users/${userLogin}`, body, {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'multipart/form-data',
+      }
+    })
+      .then(res => {
+        console.log(res);
+        toast.success("Edit profile success!", {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
       })
-    } catch (error) {
-      toast.error("Sorry, something was wrong", {
-        position: "bottom-left",
-        autoClose: 2000,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
+      .catch(err => {
+        console.log(err);
+        toast.error("Sorry, something was wrong", {
+          position: "bottom-left",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
       })
-    }
-  }
-  const onImageUpload = (e) => {
-    const file = e.target.files[0];
-    setImage(file)
-    setImagePreview(URL.createObjectURL(file))
   }
 
   // Private route
@@ -140,7 +112,7 @@ export default function Profile() {
         {/* Left Side End */}
 
         {/* Right Side Start */}
-        <div className="w-full md:w-[70%] md:border">
+        <div className="w-full md:w-[70%] mt-[2rem]">
           <div className="flex items-center pl-6 pt-[2rem] md:hidden">
             <div className="w-[50%] flex-1">
               <h1>
@@ -180,7 +152,7 @@ export default function Profile() {
           </div>
           <div className="md:flex md:mt-[4rem]">
             {/* main-center start */}
-            <form onSubmit={handleProfileChange} className="md:w-full">
+            <div className="md:w-full">
               {/* Transfer detail start */}
               <div className="flex flex-wrap">
                 <div className="w-[65%]">
@@ -191,24 +163,25 @@ export default function Profile() {
                     We got your personal information from the sign <br />up proccess. If you want to make changes on <br />your information, contact our support.
                   </p>
                 </div>
-                <div className="w-[35%]">
-                  <div className="w-full">
+                <div className="w-[35%] pl-[1rem] mt-[-1.5rem]">
+                  <div className="w-full pl-[2rem]">
                     {imagePreview ? <Image src={imagePreview} width={200} height={200} className='w-[100px] h-[100px]' alt='profile' /> : <Image src={imageCurrent} width={200} height={200} className='w-[100px] h-[100px]' alt='profile' />}
                   </div>
-                  <button
-                    className='btn btn-primary normal-case mr-[10rem] mt-4'
-                    type='file'
-                    onClick={() => document.querySelector(".input-field").click()}>
-                    Choose file
-                  </button>
-                  <input type='file' className='input-field' multiple hidden onChange={(e) => onImageUpload(e)} />
+                  <div className="w-full mt-[1rem]">
+                    <button
+                      className='btn btn-primary normal-case rounded-2xl'
+                      type='file'
+                      onClick={() => document.querySelector(".input-field").click()}>
+                      Choose from gallery
+                    </button>
+                    <input type='file' className='input-field' multiple hidden onChange={(e) => onImageUpload(e)} />
+                  </div>
                 </div>
               </div>
 
               {/* Details start */}
               <div className="px-[1.5rem] mx-6 py-4 mt-6 border-2 rounded-[10px]">
                 <p className="text-[#7A7886] font-normal text-base">First Name</p>
-                {/* <p className="font-medium text-[18px]">Ryan</p> */}
                 <input
                   type="text"
                   placeholder="Enter your firstname here"
@@ -220,7 +193,6 @@ export default function Profile() {
                 <p className="text-[#7A7886] font-normal text-base">
                   Last Name
                 </p>
-                {/* <p className="font-medium text-[18px]">Agung Samudra</p> */}
                 <input
                   type="text"
                   placeholder="Enter your lastname here"
@@ -232,32 +204,32 @@ export default function Profile() {
                 <p className="text-[#7A7886] font-normal text-base">
                   Verified E-mail
                 </p>
-                {/* <p className="font-medium text-[18px]">ryansamudra67@gmail.com</p> */}
                 <input
                   type="email"
-                  placeholder={userData.email}
+                  defaultValue={userData.email}
                   className="border-t-transparent border-r-transparent border-l-transparent mx-auto input input-bordered w-full font-medium text-[18px]"
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="px-[1.5rem] mx-6 py-4 mt-6 border-2 rounded-[10px]">
                 <p className="text-[#7A7886] font-normal text-base">Phone Number</p>
-                {/* <p className="font-medium text-[18px]">+6282284798890</p> */}
                 <input
                   type="number"
-                  placeholder={userData.phone}
+                  defaultValue={userData.phone}
                   className="border-t-transparent border-r-transparent border-l-transparent mx-auto input input-bordered w-full font-medium text-[18px]"
                   onChange={(e) => setPhone(e.target.value)}
                 />
               </div>
               {/* Details end */}
 
-              <button type="submit" className="btn btn-primary bg-primary normal-case mt-6 flex w-[90%] mb-8 rounded-2xl mx-auto md:ml-[38rem] md:w-1/6 md:mt-12">
+              <button
+                className="btn btn-primary bg-primary normal-case mt-6 flex w-[90%] mb-8 rounded-2xl mx-auto md:ml-[38rem] md:w-1/6 md:mt-12"
+                onClick={handleSubmit}>
                 Save
               </button>
 
               {/* Transfer detail end */}
-            </form>
+            </div>
             {/* main-center-end */}
           </div>
         </div>

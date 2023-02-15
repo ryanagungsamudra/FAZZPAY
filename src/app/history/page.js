@@ -28,7 +28,7 @@ export default function History() {
     outline: "outline outline-primary/60 outline-2"
   };
   const sidebarLeftClass = {
-    logout : "inline-flex w-full mt-[15rem]",
+    logout: "inline-flex w-full mt-[15rem]",
   }
 
   // Private route
@@ -40,13 +40,13 @@ export default function History() {
     <>
       <Navbar navbarClass={navbarClass} />
 
-      <div className="container mx-auto mt-[5rem] md:flex md:px-[6rem]">
+      <div className="container mx-auto mt-[5rem] mb-[2.5rem] md:flex md:px-[6rem]">
         {/* Left Side Start */}
-        <SidebarLeft sidebarLeftClass={sidebarLeftClass}/>
+        <SidebarLeft sidebarLeftClass={sidebarLeftClass} />
         {/* Left Side End */}
 
         {/* Right Side Start */}
-        <div className="w-full md:w-[70%] md:border">
+        <div className="w-full md:w-[70%] mt-8">
           <div className="flex items-center pl-6 pt-[2rem] md:hidden">
             <div className="w-[50%] flex-1">
               <h1>
@@ -213,6 +213,14 @@ export default function History() {
             </div>
             {/* main-center-end */}
           </div>
+
+          {/* Pagination start */}
+          <div className="btn-group grid grid-cols-2 w-1/3 mx-auto">
+            <button className="btn btn-outline hover:bg-primary hover:text-secondary">Previous</button>
+            <button className="btn btn-outline hover:bg-primary hover:text-secondary">Next</button>
+          </div>
+          {/* Pagination end */}
+
         </div>
         {/* Right Side End */}
       </div>

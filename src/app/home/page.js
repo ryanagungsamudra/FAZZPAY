@@ -13,7 +13,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import SidebarLeft from "@/components/SidebarLeft";
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import Cookies from "js-cookie";
 import axios from "axios";
 
@@ -24,9 +24,7 @@ export default function Home() {
     nav: "hidden",
     outline: "outline outline-primary/60 outline-2"
   };
-  const sidebarLeftClass = {
-    logout: "inline-flex w-full mt-[21.5rem]",
-  }
+  const route = useRouter()
 
   // GET USER DATA WITH AXIOS
   const url = process.env.NEXT_PUBLIC_API_URL
@@ -49,7 +47,7 @@ export default function Home() {
       <div className="container mx-auto mt-[5rem] md:flex md:px-[6rem] md:pb-[2rem]">
 
         {/* Left Side Start */}
-        <SidebarLeft sidebarLeftClass={sidebarLeftClass} />
+        <SidebarLeft />
         {/* Left Side End */}
 
         {/* Right Side Start */}
@@ -62,7 +60,7 @@ export default function Home() {
               </h1>
             </div>
           </div>
-          <div className="flex flex-wrap items-center pl-6 w-[89vw] h-[20vh] mt-14 rounded-[20px] bg-primary mx-auto md:w-full md:h-[190px] md:justify-between md:pl-[5rem]">
+          <div className="flex flex-wrap items-center ml-6 w-full h-[20vh] mt-14 rounded-[20px] bg-primary mx-auto md:w-full md:h-[190px] md:justify-between md:pl-[5rem]">
             <div className="md:w-1/2">
               <p className="w-full text-secondary font-normal text-sm pt-4 md:text-[18px]">
                 Balance
@@ -75,7 +73,7 @@ export default function Home() {
               </p>
             </div>
             <div className="hidden md:flex md:flex-col">
-              <div className="btn btn-ghost bg-slate-200 normal-case px-[3.6rem] rounded-[10px] md:w-[162px] md:mb-2 md:mr-10 md:px-[0] md:bg-secondary/20 md:border-secondary md:text-secondary md:text-[18px]">
+              <div onClick={() => { route.push('/transfer') }} className="btn btn-ghost bg-slate-200 normal-case px-[3.6rem] rounded-[10px] md:w-[162px] md:mb-2 md:mr-10 md:px-[0] md:bg-secondary/20 md:border-secondary md:text-secondary md:text-[18px]">
                 Transfer
               </div>
               <div className="btn btn-ghost bg-slate-200 normal-case px-[3.6rem] rounded-[10px] md:w-[162px] md:mt-2 md:mr-10 md:px-[0] md:bg-secondary/20 md:border-secondary md:text-secondary md:text-[18px]">
@@ -91,9 +89,9 @@ export default function Home() {
               Top Up
             </div>
           </div>
-          <div className="md:flex md:mt-[5rem]">
+          <div className="w-full md:flex md:mt-[1.5rem] md:border-2 md:rounded-[20px] md:ml-6 md:pr-8 md:shadow-lg">
             {/* main-center start */}
-            <div className="hidden md:block md:w-1/2 md:text-center">
+            <div className="hidden md:block md:w-1/2 md:text-center mt-[2.3rem]">
               <div className="flex">
                 <div className="w-1/2">
                   <Image className="mx-auto" src={arrowdown} alt="" />
@@ -106,7 +104,7 @@ export default function Home() {
                   <p>{`Rp${dataUser.expense}`}</p>
                 </div>
               </div>
-              <Image className="pt-[7rem] pl-[2rem]" src={graphic} alt="" />
+              <Image className="pt-[4rem] pl-[2rem]" src={graphic} alt="" />
             </div>
             <div className="md:w-1/2">
               <div className="flex justify-between px-8 pt-8">

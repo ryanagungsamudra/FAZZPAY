@@ -91,7 +91,7 @@ export default function Success() {
         {/* Left Side End */}
 
         {/* Right Side Start */}
-        <div className="w-full md:w-[70%] md:border">
+        <div className="w-full md:w-[70%]">
           <div className="flex items-center pl-6 pt-[2rem] md:hidden">
             <div className="w-[50%] flex-1">
               <h1>
@@ -191,7 +191,7 @@ export default function Success() {
                 <div className="btn btn-primary bg-primary/5 normal-case text-primary md:w-[22%] md:ml-[24rem]">
                   Download PDF
                 </div>
-                <div className="btn btn-primary bg-primary normal-case mb-8 md:w-[22%] md:ml-4">
+                <div onClick={() => { router.push('/home') }} className="btn btn-primary bg-primary normal-case mb-8 md:w-[22%] md:ml-4">
                   <p>Back to home</p>
                 </div>
               </div>
