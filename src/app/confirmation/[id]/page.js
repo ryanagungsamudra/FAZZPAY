@@ -38,8 +38,8 @@ export default function Confirmation() {
   const [imageStatus, setImgStatus] = useState([])
   const [getBalance, setGetBalance] = useState([])
   const [senderData, setSenderData] = useState([])
-  const [senderName, setSenderName] = useState([])
-  const [receiverName, setReceiverName] = useState([])
+  const [senderName, setSenderName] = useState('')
+  const [receiverName, setReceiverName] = useState('')
 
   // Receiver data load
   useEffect(() => {
@@ -80,8 +80,8 @@ export default function Confirmation() {
     sender_id: userLogin,
     receiver_id: id,
     amount: '',
-    sender_name: '',
-    receiver_name: '',
+    sender_name: senderName,
+    receiver_name: receiverName,
     status: 'Transfer',
     time: '',
     note: '',

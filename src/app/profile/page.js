@@ -1,19 +1,16 @@
 'use client'
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
-import arrowdown from "../../assets/home/arrow-down.png";
-import arrowup from "../../assets/home/arrow-up.png";
-import graphic from "../../assets/home/graphic.png";
-import samuel from "../../assets/samuel.png";
-import spotify from "../../assets/spotify.png";
-import netflix from "../../assets/netflix.png";
-import boby from "../../assets/boby.png";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SidebarLeft from "@/components/SidebarLeft";
 import { redirect } from "next/navigation";
 import Cookies from "js-cookie";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Profile() {
   const navbarClass = {
@@ -25,6 +22,108 @@ export default function Profile() {
   const sidebarLeftClass = {
     logout: "inline-flex w-full mt-[19rem]",
   }
+
+  // GET USER DATA WITH AXIOS
+  const url = process.env.NEXT_PUBLIC_API_URL
+  const userLogin = Cookies.get('userLogin')
+  // const router = useRouter();
+
+  const [userData, setUserData] = useState([])
+  const [imageCurrent, setImageCurrent] = useState('')
+  const [imagePreview, setImagePreview] = useState('')
+
+  const [image, setImage] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+
+  useEffect(() => {
+    axios.get(`${url}/api/users/${userLogin}`)
+      .then(res => {
+        setUserData(res.data.data)
+        setImageCurrent(`${url}/uploads/images/${res.data.data.img_profile}`)
+      })
+      .catch((err) => console.log(err))
+  }, [])
+
+  // const handleProfileChange = async (e) => {
+  //   e.preventDefault();
+  //   const body = new FormData();
+  //   body.append('full_name', firstName + lastName);
+  //   body.append('email', email);
+  //   body.append('phone', phone);
+  //   body.append('img_profile', image);
+
+  //   return await axios.patch(`${url}/api/users/${userLogin}`, body, {
+  //     method: 'PATCH',
+  //     headers: {
+  //       'Content-type': 'multipart/form-data',
+  //     }
+  //   }).then((res) => {
+  //     console.log(res.data.data);
+  //     toast.success("Edit profile success!", {
+  //       position: "top-center",
+  //       autoClose: 1500,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "colored",
+  //     });
+  //     setTimeout(() => {
+  //       window.location.reload();
+  //     }, 1500);
+  //   }).catch((err) => {
+  //     // console.log(err);
+  //     toast.error("Sorry, something was wrong", {
+  //       position: "bottom-left",
+  //       autoClose: 2000,
+  //       hideProgressBar: true,
+  //       closeOnClick: false,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "colored",
+  //     })
+  //   })
+  // }
+
+  const handleProfileChange = async (e) => {
+    e.preventDefault();
+    const body = new FormData();
+    body.append('full_name', `${firstName} ${lastName}`);
+    body.append('email', email);
+    body.append('phone', phone);
+    body.append('img_profile', image);
+
+    try {
+      await axios.patch(`${url}/api/users/${userLogin}`, body, {
+        method: 'PATCH',
+        headers: {
+          'Content-type': 'multipart/form-data',
+        }
+      })
+    } catch (error) {
+      toast.error("Sorry, something was wrong", {
+        position: "bottom-left",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      })
+    }
+  }
+  const onImageUpload = (e) => {
+    const file = e.target.files[0];
+    setImage(file)
+    setImagePreview(URL.createObjectURL(file))
+  }
+
   // Private route
   const isLogin = Cookies.get('userLogin')
   if (!isLogin || isLogin == null || isLogin == undefined) {
@@ -32,11 +131,12 @@ export default function Profile() {
   }
   return (
     <>
+      <ToastContainer />
       <Navbar navbarClass={navbarClass} />
 
       <div className="container mx-auto mt-[5rem] md:flex md:px-[6rem] md:pb-10">
         {/* Left Side Start */}
-        <SidebarLeft sidebarLeftClass={sidebarLeftClass}/>
+        <SidebarLeft sidebarLeftClass={sidebarLeftClass} />
         {/* Left Side End */}
 
         {/* Right Side Start */}
@@ -78,46 +178,86 @@ export default function Profile() {
               Top Up
             </div>
           </div>
-          <div className="md:flex md:mt-[2rem]">
+          <div className="md:flex md:mt-[4rem]">
             {/* main-center start */}
-            <div className="md:w-full">
+            <form onSubmit={handleProfileChange} className="md:w-full">
               {/* Transfer detail start */}
-              <h1 className="font-bold text-[18px] w-full px-[2.5rem]">
-              Personal Information
-              </h1>
-              <p className="font-normal text-[16px] text-[#7A7886] px-[2.5rem] pt-6">
-              We got your personal information from the sign <br/>up proccess. If you want to make changes on <br/>your information, contact our support.
-              </p>
+              <div className="flex flex-wrap">
+                <div className="w-[65%]">
+                  <h1 className="font-bold text-[18px] w-full px-[2.5rem]">
+                    Personal Information
+                  </h1>
+                  <p className="font-normal text-[16px] text-[#7A7886] px-[2.5rem] pt-6">
+                    We got your personal information from the sign <br />up proccess. If you want to make changes on <br />your information, contact our support.
+                  </p>
+                </div>
+                <div className="w-[35%]">
+                  <div className="w-full">
+                    {imagePreview ? <Image src={imagePreview} width={200} height={200} className='w-[100px] h-[100px]' alt='profile' /> : <Image src={imageCurrent} width={200} height={200} className='w-[100px] h-[100px]' alt='profile' />}
+                  </div>
+                  <button
+                    className='btn btn-primary normal-case mr-[10rem] mt-4'
+                    type='file'
+                    onClick={() => document.querySelector(".input-field").click()}>
+                    Choose file
+                  </button>
+                  <input type='file' className='input-field' multiple hidden onChange={(e) => onImageUpload(e)} />
+                </div>
+              </div>
 
               {/* Details start */}
               <div className="px-[1.5rem] mx-6 py-4 mt-6 border-2 rounded-[10px]">
                 <p className="text-[#7A7886] font-normal text-base">First Name</p>
-                <p className="font-medium text-[18px]">Ryan</p>
+                {/* <p className="font-medium text-[18px]">Ryan</p> */}
+                <input
+                  type="text"
+                  placeholder="Enter your firstname here"
+                  className="border-t-transparent border-r-transparent border-l-transparent mx-auto input input-bordered w-full font-medium text-[18px]"
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
               </div>
               <div className="px-[1.5rem] mx-6 py-4 mt-6 border-2 rounded-[10px]">
                 <p className="text-[#7A7886] font-normal text-base">
-                Last Name
+                  Last Name
                 </p>
-                <p className="font-medium text-[18px]">Agung Samudra</p>
+                {/* <p className="font-medium text-[18px]">Agung Samudra</p> */}
+                <input
+                  type="text"
+                  placeholder="Enter your lastname here"
+                  className="border-t-transparent border-r-transparent border-l-transparent mx-auto input input-bordered w-full font-medium text-[18px]"
+                  onChange={(e) => setLastName(e.target.value)}
+                />
               </div>
               <div className="px-[1.5rem] mx-6 py-4 mt-6 border-2 rounded-[10px]">
                 <p className="text-[#7A7886] font-normal text-base">
-                Verified E-mail
+                  Verified E-mail
                 </p>
-                <p className="font-medium text-[18px]">ryansamudra67@gmail.com</p>
+                {/* <p className="font-medium text-[18px]">ryansamudra67@gmail.com</p> */}
+                <input
+                  type="email"
+                  placeholder={userData.email}
+                  className="border-t-transparent border-r-transparent border-l-transparent mx-auto input input-bordered w-full font-medium text-[18px]"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </div>
               <div className="px-[1.5rem] mx-6 py-4 mt-6 border-2 rounded-[10px]">
                 <p className="text-[#7A7886] font-normal text-base">Phone Number</p>
-                <p className="font-medium text-[18px]">+6282284798890</p>
+                {/* <p className="font-medium text-[18px]">+6282284798890</p> */}
+                <input
+                  type="number"
+                  placeholder={userData.phone}
+                  className="border-t-transparent border-r-transparent border-l-transparent mx-auto input input-bordered w-full font-medium text-[18px]"
+                  onChange={(e) => setPhone(e.target.value)}
+                />
               </div>
               {/* Details end */}
 
-              <div className="btn btn-primary bg-primary normal-case mt-6 flex w-[90%] mb-8 rounded-2xl mx-auto md:ml-[38rem] md:w-1/6 md:mt-12">
-                <p>Save</p>
-              </div>
+              <button type="submit" className="btn btn-primary bg-primary normal-case mt-6 flex w-[90%] mb-8 rounded-2xl mx-auto md:ml-[38rem] md:w-1/6 md:mt-12">
+                Save
+              </button>
 
               {/* Transfer detail end */}
-            </div>
+            </form>
             {/* main-center-end */}
           </div>
         </div>

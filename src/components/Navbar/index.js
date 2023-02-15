@@ -11,8 +11,9 @@ export default function Navbar({ navbarClass }) {
   const router = useRouter()
   const url = process.env.NEXT_PUBLIC_API_URL
   const [imgStatus, setImgStatus] = useState([])
-  const id_user = Cookies.get('userLogin')
   const [imgUser, setImgUser] = useState([])
+  const [dataUser, setDataUser] = useState([])
+  const id_user = Cookies.get('userLogin')
   const userFullName = Cookies.get('userFullName')
   const userPhoneNumber = Cookies.get('userPhoneNumber')
 
@@ -20,7 +21,7 @@ export default function Navbar({ navbarClass }) {
   useEffect(() => {
     axios.get(`${url}/api/users/${id_user}`)
       .then(res => {
-        // setDataUser(res.data.data)
+        setDataUser(res.data.data)
         setImgStatus(res.data.data.img_profile)
         setImgUser(`${url}/uploads/images/${res.data.data.img_profile}`);
       })
@@ -53,8 +54,8 @@ export default function Navbar({ navbarClass }) {
           (
             <>
               <div className='flex flex-wrap text-end'>
-                <h1 className={`w-full text-lg font-semibold ${navbarClass.name}`}>{userFullName}</h1>
-                <p className={`w-full text-sm font-normal ${navbarClass.phone}`}>{userPhoneNumber}</p>
+                <h1 className={`w-full text-lg font-semibold ${navbarClass.name}`}>{dataUser.full_name}</h1>
+                <p className={`w-full text-sm font-normal ${navbarClass.phone}`}>{dataUser.phone}</p>
               </div>
               <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
