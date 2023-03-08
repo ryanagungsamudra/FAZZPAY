@@ -12,6 +12,7 @@ import failed from "@/assets/home/failed.png"
 import Cookies from "js-cookie";
 import { redirect, usePathname, useRouter } from "next/navigation";
 import axios from "axios";
+import { _renderCurrency } from "@/utils/Currency/number";
 
 export default function Success() {
   const navbarClass = {
@@ -75,6 +76,16 @@ export default function Success() {
       })
       .catch((err) => console.log(err))
   }, [url, userLogin])
+
+  // Get current date local start
+  const date = new Date()
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  let day = date.getDate();
+  let month = months[date.getMonth()];
+  let year = date.getFullYear()
+  let time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+  let currentDate = `${day} ${month} ${year} - ${time}`;
+  // Get current date local end
 
   // Private route
   const isLogin = Cookies.get('userLogin')
@@ -149,23 +160,23 @@ export default function Success() {
               {/* Details start */}
               <div className="px-[1.5rem] mx-6 py-4 mt-6 border-2 rounded-[10px]">
                 <p className="text-[#7A7886] font-normal text-base">Amount</p>
-                <p className="font-medium text-[18px]">{`Rp${senderData.expense}`}</p>
+                <p className="font-medium text-[18px]">{_renderCurrency(senderData.expense)}</p>
               </div>
               <div className="px-[1.5rem] mx-6 py-4 mt-6 border-2 rounded-[10px]">
                 <p className="text-[#7A7886] font-normal text-base">
                   Balance Left
                 </p>
-                <p className="font-medium text-[18px]">{`Rp${senderData.balance}`}</p>
+                <p className="font-medium text-[18px]">{_renderCurrency(senderData.balance)}</p>
               </div>
               <div className="px-[1.5rem] mx-6 py-4 mt-6 border-2 rounded-[10px]">
                 <p className="text-[#7A7886] font-normal text-base">
                   Date & Time
                 </p>
-                <p className="font-medium text-[18px]">May 11, 2020 - 12.20</p>
+                <p className="font-medium text-[18px]">{currentDate}</p>
               </div>
               <div className="px-[1.5rem] mx-6 py-4 mt-6 border-2 rounded-[10px]">
                 <p className="text-[#7A7886] font-normal text-base">Notes</p>
-                <p className="font-medium text-[18px]">For buying some socks</p>
+                <p className="font-medium text-[18px]">{Cookies.get('transfer_note')}</p>
               </div>
               {/* Details end */}
 

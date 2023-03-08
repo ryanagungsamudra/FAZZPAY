@@ -16,6 +16,7 @@ import SidebarLeft from "@/components/SidebarLeft";
 import { redirect, useRouter } from 'next/navigation';
 import Cookies from "js-cookie";
 import axios from "axios";
+import { _renderCurrency } from "@/utils/Currency/number";
 
 export default function Home() {
   const navbarClass = {
@@ -66,7 +67,7 @@ export default function Home() {
                 Balance
               </p>
               <h1 className="w-full text-secondary font-bold text-2xl md:text-[40px] md:py-5">
-                {`Rp${dataUser.balance}`}
+                {`${_renderCurrency(dataUser.balance)}`}
               </h1>
               <p className="w-full text-secondary font-semibold text-sm pb-4 md:text-[14px]">
                 {dataUser.phone}
@@ -96,12 +97,12 @@ export default function Home() {
                 <div className="w-1/2">
                   <Image className="mx-auto" src={arrowdown} alt="" />
                   <p>Income</p>
-                  <p>{`Rp${dataUser.income}`}</p>
+                  <p>{`${_renderCurrency(dataUser.income)}`}</p>
                 </div>
                 <div className="w-1/2">
                   <Image className="mx-auto" src={arrowup} alt="" />
                   <p>Expense</p>
-                  <p>{`Rp${dataUser.expense}`}</p>
+                  <p>{`${_renderCurrency(dataUser.expense)}`}</p>
                 </div>
               </div>
               <Image className="pt-[4rem] pl-[2rem]" src={graphic} alt="" />
@@ -125,7 +126,7 @@ export default function Home() {
                   </div>
                   <div className="w-[35%]">
                     <h1 className="text-lg font-bold text-end text-[#1EC15F]">
-                      +Rp50.000
+                      +Rp 50.000
                     </h1>
                   </div>
                 </div>
@@ -139,7 +140,7 @@ export default function Home() {
                   </div>
                   <div className="w-[35%]">
                     <h1 className="text-lg font-bold text-end text-[#FF5B37]">
-                      -Rp49.000
+                      -Rp 49.000
                     </h1>
                   </div>
                 </div>
@@ -153,7 +154,7 @@ export default function Home() {
                   </div>
                   <div className="w-[35%]">
                     <h1 className="text-lg font-bold text-end text-[#FF5B37]">
-                      -Rp149.000
+                      -Rp 149.000
                     </h1>
                   </div>
                 </div>
@@ -167,7 +168,7 @@ export default function Home() {
                   </div>
                   <div className="w-[35%]">
                     <h1 className="text-lg font-bold text-end text-[#1EC15F]">
-                      +Rp1.150.000
+                      +Rp 1.150.000
                     </h1>
                   </div>
                 </div>

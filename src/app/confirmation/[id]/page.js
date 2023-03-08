@@ -11,6 +11,8 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { RupiahCurrencyInput } from "@/components/RupiahCurrencyInput";
+import { _renderCurrency } from "@/utils/Currency/number";
 
 export default function Confirmation() {
   const navbarClass = {
@@ -75,26 +77,37 @@ export default function Confirmation() {
       .catch((err) => console.log(err))
   }, [url, userLogin])
 
+  // Get current date local start
+  const date = new Date()
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  let day = date.getDate();
+  let month = months[date.getMonth()];
+  let year = date.getFullYear()
+  let time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+  let currentDate = `${day} ${month} ${year} - ${time}`;
+  // Get current date local end
+
   // Update data and sending data transfer
-  const [transferForm, setTransferForm] = useState({
-    sender_id: userLogin,
-    receiver_id: id,
-    amount: '',
-    sender_name: senderName,
-    receiver_name: receiverName,
-    status: 'Transfer',
-    time: '',
-    note: '',
-  })
+  const [currencyValue, setCurrencyValue] = useState(0)
+  const [transferNote, setTransferNote] = useState('')
   const handleTransfer = async (event) => {
     event.preventDefault()
+    const dataTransfer = {
+      sender_id: userLogin,
+      receiver_id: id,
+      amount: currencyValue,
+      sender_name: senderName,
+      receiver_name: receiverName,
+      status: 'Transfer',
+      time: currentDate,
+      note: transferNote,
+    }
     return await axios({
       url: `${url}/api/transaction`,
       method: 'POST',
-      data: transferForm
+      data: dataTransfer
     }).then((res) => {
-      console.log(res.data.data);
-      Cookies.set('id_history', res.data.data.id)
+      Cookies.set('transfer_note', transferNote)
       toast.success("Please wait, your transaction on progress...", {
         position: "top-center",
         autoClose: 1500,
@@ -109,7 +122,7 @@ export default function Confirmation() {
         router.push(`confirmation/${id}/status`);
       }, 1500);
     }).catch((err) => {
-      // console.log(err);
+      console.log(err);
       toast.error("Sorry transaction error", {
         position: "bottom-left",
         autoClose: 2000,
@@ -203,29 +216,26 @@ export default function Confirmation() {
               </h1>
               <div className="px-[1.5rem] mx-6 py-4 mt-6 border-2 rounded-[10px]">
                 <p className="text-[#7A7886] font-normal text-base pb-2">Amount</p>
-                {/* <p className="font-medium text-[18px]">Rp100.000</p> */}
-                <input
-                  type="number"
-                  placeholder="Enter amount"
+                <RupiahCurrencyInput
                   className="border-t-transparent border-r-transparent border-l-transparent mx-auto input input-bordered w-full font-medium text-[18px]"
-                  onChange={(e) => setTransferForm({
-                    ...transferForm,
-                    amount: e.target.value
-                  })}
+                  value={currencyValue}
+                  onChange={(e) => setCurrencyValue(e)}
                 />
               </div>
               <div className="px-[1.5rem] mx-6 py-4 mt-6 border-2 rounded-[10px]">
                 <p className="text-[#7A7886] font-normal text-base pb-2">
                   Balance Left
                 </p>
-                <p className="font-medium text-[18px]">{`Rp${getBalance}`}</p>
+                <p className="font-medium text-[18px]">{_renderCurrency(getBalance)}</p>
               </div>
               <div className="px-[1.5rem] mx-6 py-4 mt-6 border-2 rounded-[10px]">
                 <p className="text-[#7A7886] font-normal text-base pb-2">
                   Date & Time
                 </p>
-                {/* <p className="font-medium text-[18px]">May 11, 2020 - 12.20</p> */}
-                <input
+                <div className="border-t-transparent border-r-transparent border-l-transparent mx-auto input input-bordered w-full font-medium text-[18px]">
+                  {currentDate}
+                </div>
+                {/* <input
                   type="datetime-local"
                   placeholder="Enter date & time"
                   className="border-t-transparent border-r-transparent border-l-transparent mx-auto input input-bordered w-full font-medium text-[18px]"
@@ -233,7 +243,7 @@ export default function Confirmation() {
                     ...transferForm,
                     time: e.target.value
                   })}
-                />
+                /> */}
               </div>
               <div className="px-[1.5rem] mx-6 py-4 mt-6 border-2 rounded-[10px]">
                 <p className="text-[#7A7886] font-normal text-base pb-2">Notes</p>
@@ -242,10 +252,7 @@ export default function Confirmation() {
                   type="text"
                   placeholder="Add some note?"
                   className="border-t-transparent border-r-transparent border-l-transparent mx-auto input input-bordered w-full font-medium text-[18px]"
-                  onChange={(e) => setTransferForm({
-                    ...transferForm,
-                    note: e.target.value
-                  })}
+                  onChange={(e) => setTransferNote(e.target.value)}
                 />
               </div>
               {/* Details end */}

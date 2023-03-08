@@ -25,7 +25,7 @@ export default function Home() {
       {/* Navbar start */}
       <Navbar navbarClass={navbarClass} />
       {/* Navbar End */}
-      <Image alt='img' className='absolute -z-10' src={bgPrimary} />
+      <Image alt='img' className='md:absolute md:-z-10' src={bgPrimary} />
 
       {/* Section 1 start */}
       <section className='z-0'>

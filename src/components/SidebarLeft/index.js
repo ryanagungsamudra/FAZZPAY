@@ -13,6 +13,8 @@ import axios from "axios";
 import { ToastContainer, Zoom, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from "next/navigation";
+import { RupiahNumericInput } from "../RupiahNumericInput";
+import { RupiahCurrencyInput } from "../RupiahCurrencyInput";
 
 export default function SidebarLeft({ sidebarLeftClass }) {
   // USER TOP UP BALANCE WITH AXIOS
@@ -20,16 +22,17 @@ export default function SidebarLeft({ sidebarLeftClass }) {
   const userId = Cookies.get('userLogin')
   const router = useRouter();
 
-  const [topUp, setTopUp] = useState({
-    amount: ''
-  })
+  const [currencyValue, setCurrencyValue] = useState(0)
 
   const handleTopUp = async (event) => {
     event.preventDefault()
+    const dataTopUp = {
+      amount: currencyValue
+    }
     return await axios({
       url: `${url}/api/transaction/${userId}`,
       method: 'PATCH',
-      data: topUp
+      data: dataTopUp
     }).then((res) => {
       console.log(res.data.data);
       toast.success('Top up success!', {
@@ -95,11 +98,12 @@ export default function SidebarLeft({ sidebarLeftClass }) {
               </label>
               <h3 className="text-lg font-bold">Top Up</h3>
               <p className="py-4">Enter the amount of money, and click submit</p>
-              <input type="number" placeholder="input amount" className="border rounded-2xl placeholder:px-4 py-4 w-full"
-                onChange={(e) => setTopUp({
-                  ...topUp,
-                  amount: e.target.value
-                })} />
+              <RupiahCurrencyInput
+                value={currencyValue}
+                onChange={(value) => setCurrencyValue(() => value)}
+                // className="border rounded-2xl placeholder:px-4 py-4 w-full"
+                className="rounded-lg px-3 py-2 shadow text-lg text-primary font-medium"
+              />
               <button type="submit" className="btn btn-primary bg-primary px-4 rounded-2xl normal-case ml-[24rem] mt-6">Submit</button>
             </div>
           </form>
