@@ -165,7 +165,7 @@ export default function Profile() {
                 </div>
                 <div className="w-[35%] pl-[1rem] mt-[-1.5rem]">
                   <div className="w-full pl-[2rem]">
-                    {imagePreview ? <Image src={imagePreview} width={200} height={200} className='w-[100px] h-[100px]' alt='profile' /> : <Image src={imageCurrent} width={200} height={200} className='w-[100px] h-[100px]' alt='profile' />}
+                    {imagePreview ? <Image src={imagePreview} width={200} height={200} className='w-[100px] h-[100px] rounded-full' alt='profile' /> : <Image src={imageCurrent} width={200} height={200} className='w-[100px] h-[100px] rounded-full' alt='profile' />}
                   </div>
                   <div className="w-full mt-[1rem]">
                     <button
@@ -187,6 +187,7 @@ export default function Profile() {
                   placeholder="Enter your firstname here"
                   className="border-t-transparent border-r-transparent border-l-transparent mx-auto input input-bordered w-full font-medium text-[18px]"
                   onChange={(e) => setFirstName(e.target.value)}
+                  defaultValue={userData.full_name}
                 />
               </div>
               <div className="px-[1.5rem] mx-6 py-4 mt-6 border-2 rounded-[10px]">

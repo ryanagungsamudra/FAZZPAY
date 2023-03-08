@@ -116,6 +116,7 @@ export default function Home() {
               </div>
               {/* Transaction history start */}
               <div className="flex flex-wrap pb-10">
+
                 <div className="flex items-center py-6 pl-6 pr-6 shadow-lg w-full">
                   <div className="w-[20%]">
                     <Image className="w-[70%]" src={samuel} alt="" />
@@ -124,9 +125,9 @@ export default function Home() {
                     <h1 className="text-base font-bold">Samuel Suhi</h1>
                     <p className="text-sm font-normal">Transfer</p>
                   </div>
-                  <div className="w-[35%]">
+                  <div className="w-[40%]">
                     <h1 className="text-lg font-bold text-end text-[#1EC15F]">
-                      +Rp 50.000
+                      {`+${_renderCurrency(50000)}`}
                     </h1>
                   </div>
                 </div>
@@ -138,9 +139,9 @@ export default function Home() {
                     <h1 className="text-base font-bold">Spotify</h1>
                     <p className="text-sm font-normal">Subscription</p>
                   </div>
-                  <div className="w-[35%]">
+                  <div className="w-[40%]">
                     <h1 className="text-lg font-bold text-end text-[#FF5B37]">
-                      -Rp 49.000
+                      {`-${_renderCurrency(49000)}`}
                     </h1>
                   </div>
                 </div>
@@ -152,9 +153,9 @@ export default function Home() {
                     <h1 className="text-base font-bold">Netflix</h1>
                     <p className="text-sm font-normal">Subscription</p>
                   </div>
-                  <div className="w-[35%]">
+                  <div className="w-[40%]">
                     <h1 className="text-lg font-bold text-end text-[#FF5B37]">
-                      -Rp 149.000
+                      {`-${_renderCurrency(149000)}`}
                     </h1>
                   </div>
                 </div>
@@ -166,9 +167,9 @@ export default function Home() {
                     <h1 className="text-base font-bold">Bobi Sammy</h1>
                     <p className="text-sm font-normal">Transfer</p>
                   </div>
-                  <div className="w-[35%]">
+                  <div className="w-[40%]">
                     <h1 className="text-lg font-bold text-end text-[#1EC15F]">
-                      +Rp 1.150.000
+                      {`+${_renderCurrency(1150000)}`}
                     </h1>
                   </div>
                 </div>
