@@ -40,7 +40,7 @@ export default function Profile() {
     axios.get(`${url}/api/users/${userLogin}`)
       .then(res => {
         setUserData(res.data.data)
-        setImageCurrent(`${url}/uploads/images/${res.data.data.img_profile}`)
+        setImageCurrent(`https://res.cloudinary.com/deagxiwjt/${res.data.data.img_profile}`)
       })
       .catch((err) => console.log(err))
   }, [])

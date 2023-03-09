@@ -77,7 +77,7 @@ export default function ReceiverCard() {
             <div className="flex flex-wrap">
                 {dataReceiver.map((item) => {
                     if (userId !== item.id) {
-                        const img = `${url}/uploads/images/${item.img_profile}`
+                        const img = `https://res.cloudinary.com/deagxiwjt/${item.img_profile}`
                         const isImg = () => {
                             if (item.img_profile === undefined || item.img_profile === null) {
                                 return (

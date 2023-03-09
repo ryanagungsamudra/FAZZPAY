@@ -23,7 +23,7 @@ export default function Navbar({ navbarClass }) {
       .then(res => {
         setDataUser(res.data.data)
         setImgStatus(res.data.data.img_profile)
-        setImgUser(`${url}/uploads/images/${res.data.data.img_profile}`);
+        setImgUser(`https://res.cloudinary.com/deagxiwjt/${res.data.data.img_profile}`);
       })
       .catch((err) => console.log(err))
   }, [url, id_user])

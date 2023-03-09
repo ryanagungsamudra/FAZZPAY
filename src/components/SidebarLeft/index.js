@@ -34,7 +34,7 @@ export default function SidebarLeft({ sidebarLeftClass }) {
       method: 'PATCH',
       data: dataTopUp
     }).then((res) => {
-      console.log(res.data.data);
+      // console.log(res.data.data);
       toast.success('Top up success!', {
         position: "top-center",
         autoClose: 1500,
