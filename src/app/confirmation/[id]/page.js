@@ -32,6 +32,7 @@ export default function Confirmation() {
 
   // GET USER DATA WITH AXIOS
   const url = process.env.NEXT_PUBLIC_API_URL
+  const urlImage = process.env.NEXT_PUBLIC_API_IMG
   const userLogin = Cookies.get('userLogin')
   const router = useRouter();
 
@@ -48,7 +49,7 @@ export default function Confirmation() {
     axios.get(`${url}/api/users/${id}`)
       .then(res => {
         setDataReceiver(res.data.data)
-        setProfileImg(`${url}/uploads/images/${res.data.data.img_profile}`)
+        setProfileImg(`${urlImage}/${res.data.data.img_profile}`)
         setImgStatus(res.data.data.img_profile)
         setReceiverName(res.data.data.full_name)
       })

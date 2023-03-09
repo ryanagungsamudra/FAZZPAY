@@ -10,6 +10,7 @@ import React, { useEffect, useState } from 'react'
 export default function ReceiverCard() {
     // GET USER DATA WITH AXIOS
     const url = process.env.NEXT_PUBLIC_API_URL
+    const urlImage = process.env.NEXT_PUBLIC_API_IMG
     const userId = Cookies.get('userLogin')
     const [dataReceiver, setDataReceiver] = useState([])
     const [keyword, setKeyword] = useState('');
@@ -77,7 +78,7 @@ export default function ReceiverCard() {
             <div className="flex flex-wrap">
                 {dataReceiver.map((item) => {
                     if (userId !== item.id) {
-                        const img = `https://res.cloudinary.com/deagxiwjt/${item.img_profile}`
+                        const img = `${urlImage}/${item.img_profile}`
                         const isImg = () => {
                             if (item.img_profile === undefined || item.img_profile === null) {
                                 return (

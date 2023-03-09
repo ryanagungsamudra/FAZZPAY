@@ -10,6 +10,7 @@ import axios from 'axios'
 export default function Navbar({ navbarClass }) {
   const router = useRouter()
   const url = process.env.NEXT_PUBLIC_API_URL
+  const urlImage = process.env.NEXT_PUBLIC_API_IMG
   const [imgStatus, setImgStatus] = useState([])
   const [imgUser, setImgUser] = useState([])
   const [dataUser, setDataUser] = useState([])
@@ -23,7 +24,7 @@ export default function Navbar({ navbarClass }) {
       .then(res => {
         setDataUser(res.data.data)
         setImgStatus(res.data.data.img_profile)
-        setImgUser(`https://res.cloudinary.com/deagxiwjt/${res.data.data.img_profile}`);
+        setImgUser(`${urlImage}/${res.data.data.img_profile}`);
       })
       .catch((err) => console.log(err))
   }, [url, id_user])

@@ -24,6 +24,7 @@ export default function Profile() {
 
   // GET USER DATA WITH AXIOS
   const url = process.env.NEXT_PUBLIC_API_URL
+  const urlImage = process.env.NEXT_PUBLIC_API_IMG
   const userLogin = Cookies.get('userLogin')
 
   const [userData, setUserData] = useState([])
@@ -40,7 +41,7 @@ export default function Profile() {
     axios.get(`${url}/api/users/${userLogin}`)
       .then(res => {
         setUserData(res.data.data)
-        setImageCurrent(`https://res.cloudinary.com/deagxiwjt/${res.data.data.img_profile}`)
+        setImageCurrent(`${urlImage}/${res.data.data.img_profile}`)
       })
       .catch((err) => console.log(err))
   }, [])
@@ -66,7 +67,7 @@ export default function Profile() {
       }
     })
       .then(res => {
-        console.log(res);
+        // console.log(res);
         toast.success("Edit profile success!", {
           position: "top-center",
           autoClose: 1500,
@@ -82,7 +83,7 @@ export default function Profile() {
         }, 1500);
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
         toast.error("Sorry, something was wrong", {
           position: "bottom-left",
           autoClose: 2000,
