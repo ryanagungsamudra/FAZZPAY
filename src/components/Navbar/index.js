@@ -44,7 +44,7 @@ export default function Navbar({ navbarClass }) {
     <div className={`${navbarClass.color} md:px-[6rem] drop-shadow-xl z-[9999]`}>
       <div className="flex-1">
         <Link href='/' className={navbarClass.title}>FazzPay</Link>
-        <div className={`flex ${navbarClass.nav}`}>
+        <div className={`hidden md:flex ${navbarClass.nav}`}>
           <Link href='/home' className='text-secondary text-base font-semibold pt-2 pl-[1rem] hover:text-gray-700'>Dashboard</Link>
           <Link href='/transfer' className='text-secondary text-base font-semibold pt-2 px-8 hover:text-gray-700'>Transfer</Link>
           <Link href='/history' className='text-secondary text-base font-semibold pt-2 hover:text-gray-700'>History</Link>

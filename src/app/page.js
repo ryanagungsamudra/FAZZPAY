@@ -28,16 +28,22 @@ export default function Home() {
         {/* <Image alt='img' className='md:absolute md:-z-10' src={bgPrimary} /> */}
 
         {/* Section 1 start */}
-        <section className='flex items-center justify-center h-[132.5vh] w-screen bg-fixed bg-cover landing-hero'>
+        <section className='flex items-center justify-center h-[128vh] w-screen bg-cover landing-hero mt-[-4rem] md:h-[132.5vh] md:w-screen md:mt-0'>
           {/* <div className='flex flex-wrap'> */}
 
-          <div className='md:w-1/2 lg:w-1/2 pl-28 pb-[4rem]'>
-            <h1 className='text-secondary font-extrabold text-[60px]'>Awesome App <br />For Saving Time.</h1>
-            <p className='text-secondary font-normal text-[18px] pt-16'>We bring you a mobile app for banking problems that <br />oftenly wasting much of your times.</p>
-            <div className='btn btn-primary bg-secondary text-primary px-12 mt-16'>Try It Free</div>
+          <div className='md:w-1/2 md:pl-28 md:pb-[4rem]'>
+            <h1 className='text-secondary font-extrabold text-[36px] text-center mt-[-15rem] md:mt-0 md:text-left md:text-[60px]'>Awesome App <br />For Saving Time.</h1>
+            <p className='text-secondary font-normal pt-8 px-10 hidden md:block md:px-0 md:pt-16 md:text-[18px]'>We bring you a mobile app for banking problems that <br />oftenly wasting much of your times.</p>
+            <p className='block md:hidden text-secondary font-normal pt-8 px-14 text-justify'>We bring you a mobile app for banking problems that oftenly wasting much of your times.</p>
+            <div className='flex flex-wrap justify-center items-center w-full md:block'>
+              <div className='btn btn-primary bg-secondary text-primary px-12 mt-16'>Try It Free</div>
+              <div className='md:hidden mb-[-30rem]'>
+                <Image alt='img' src={innerHero} />
+              </div>
+            </div>
           </div>
 
-          <div className='md:w-1/2 lg:w-1/2 mt-[5.5rem]'>
+          <div className='hidden md:block md:w-1/2 md:mt-[5.5rem]'>
             <Image alt='img' src={innerHero} />
           </div>
           {/* </div> */}
@@ -45,15 +51,15 @@ export default function Home() {
         {/* Section 1 end */}
 
         {/* Section 2 start */}
-        <section className='flex items-center ml-[2rem] h-[300px] w-full rounded-2xl'>
+        <section className='hidden md:flex items-center ml-[2rem] h-[300px] w-full rounded-2xl'>
           <Image alt='img' className='w-full' src={sponsored} />
         </section>
-        <div className='pl-[3.5rem] bg-[#473AD1]/5 w-[98.9vw]'>
+        <div className='md:pl-[3.5rem] bg-[#473AD1]/5 w-[98.9vw] px-[2rem]'>
           <div className="flex flex-wrap text-center pt-[6rem]">
             <h1 className="w-full text-[60px] font-extrabold"><span className="text-primary">About</span> the Application.</h1>
             <p className="w-full text-[18px] font-normal pt-4">We have some great features from the application and it’s totally free <br />to use by all users around the world.</p>
           </div>
-          <div className="flex justify-evenly mt-[4rem]">
+          <div className="flex flex-wrap justify-evenly mt-[4rem]">
             <div className="w-[367px] h-[344px] bg-[#fffafa] border-2 rounded-[25px] shadow-xl flex flex-wrap items-center py-[2rem]">
               <Image alt='img' className='mx-auto' src={phone} />
               <h1 className='w-full text-center text-[24px] font-bold'>24/7 Support</h1>
@@ -74,12 +80,12 @@ export default function Home() {
         {/* Section 2 end */}
 
         {/* Section 3 start */}
-        <section className='flex flex-wrap mt-[8rem] pl-[3.5rem]'>
-          <div className='w-1/2'>
+        <section className='flex flex-wrap px-[2rem] md:mt-[8rem] md:pl-[3.5rem]'>
+          <div className='w-1/2 hidden md:block'>
             <Image alt='img' src={phone1section3} />
             <Image alt='img' className='-mt-[6rem]' src={phone2section3} />
           </div>
-          <div className='w-1/2'>
+          <div className='md:w-1/2 w-full flex flex-wrap justify-center'>
             <h1 className='text-[60px] font-extrabold mt-[7rem]'>All The <span className='text-primary'>Great</span><br />FazzPay Features.</h1>
 
             <div className='w-full border-2 shadow-lg px-[1rem] py-[2rem] rounded-[25px] mt-[2rem]'>
@@ -99,13 +105,13 @@ export default function Home() {
         {/* Section 3 end */}
 
         {/* Section 4 start */}
-        <section className='text-center pt-[6rem] pl-[4.5rem]'>
+        <section className='text-center pt-[6rem] md:pl-[4.5rem]'>
           <h1 className='text-[60px] font-extrabold'>What Users are <span className='text-primary'>Saying.</span></h1>
           <p className='text-[18px] font-normal pt-4'>We have some great features from the application and it’s totally free <br />to use by all users around the world.</p>
           {/* Carousel start */}
           <div className="carousel my-[4rem]">
             <div id="slide1" className="carousel-item relative w-full justify-center">
-              <div className="card w-[55vw] rounded-[30px] bg-base-100 shadow-lg border-2">
+              <div className="card w-[80%] h-full md:w-[55vw] rounded-[30px] bg-base-100 shadow-lg border-2">
                 <figure className="px-10 pt-10">
                   <Image src={carousel} alt="Shoes" className="rounded-xl" />
                 </figure>
@@ -116,12 +122,12 @@ export default function Home() {
                 </div>
               </div>
               <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                <a href="#slide3" className="btn btn-circle ml-[8rem]">❮</a>
-                <a href="#slide2" className="btn btn-circle mr-[8rem]">❯</a>
+                <a href="#slide3" className="btn btn-circle md:ml-[8rem]">❮</a>
+                <a href="#slide2" className="btn btn-circle md:mr-[8rem]">❯</a>
               </div>
             </div>
             <div id="slide2" className="carousel-item relative w-full justify-center">
-              <div className="card w-[55vw] rounded-[30px] bg-base-100 shadow-lg border-2">
+              <div className="card w-[80%] h-full md:w-[55vw] rounded-[30px] bg-base-100 shadow-lg border-2">
                 <figure className="px-10 pt-10">
                   <Image src={carousel} alt="Shoes" className="rounded-xl" />
                 </figure>
@@ -132,12 +138,12 @@ export default function Home() {
                 </div>
               </div>
               <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                <a href="#slide1" className="btn btn-circle ml-[8rem]">❮</a>
-                <a href="#slide3" className="btn btn-circle mr-[8rem]">❯</a>
+                <a href="#slide1" className="btn btn-circle md:ml-[8rem]">❮</a>
+                <a href="#slide3" className="btn btn-circle md:mr-[8rem]">❯</a>
               </div>
             </div>
             <div id="slide3" className="carousel-item relative w-full justify-center">
-              <div className="card w-[55vw] rounded-[30px] bg-base-100 shadow-lg border-2">
+              <div className="card w-[80%] h-full md:w-[55vw] rounded-[30px] bg-base-100 shadow-lg border-2">
                 <figure className="px-10 pt-10">
                   <Image src={carousel} alt="Shoes" className="rounded-xl" />
                 </figure>
@@ -148,8 +154,8 @@ export default function Home() {
                 </div>
               </div>
               <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                <a href="#slide2" className="btn btn-circle ml-[8rem]">❮</a>
-                <a href="#slide1" className="btn btn-circle mr-[8rem]">❯</a>
+                <a href="#slide2" className="btn btn-circle md:ml-[8rem]">❮</a>
+                <a href="#slide1" className="btn btn-circle md:mr-[8rem]">❯</a>
               </div>
             </div>
           </div>
@@ -158,10 +164,10 @@ export default function Home() {
         {/* Section 4 end */}
 
         {/* Footer start */}
-        <div className='pl-28 pt-[5rem] bg-primary h-[438px] w-[98.9vw]'>
+        <div className='px-[2rem] md:pl-28 pt-[5rem] bg-primary h-[438px] w-[98.9vw]'>
           <h1 className='text-secondary text-[36px] font-bold'>FazzPay</h1>
           <p className='text-secondary/75 mt-[2rem]'>Simplify financial needs and saving <br />much time in banking needs with <br />one single app.</p>
-          <div className='flex justify-between pr-[6rem] border-t mt-[4rem]'>
+          <div className='flex justify-between md:pr-[6rem] border-t mt-[4rem]'>
             <p className='text-secondary/90 pt-[2rem]'>2022 FazzPay. All right reserved.</p>
             <p className='text-secondary pt-[2rem]'>+62 8228 4798 890</p>
           </div>
