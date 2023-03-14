@@ -1,38 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# <h1 align="center">FAZZPAY</h1>
+
+ <p align="center">
+    <a href="https://yannnfazzpay.vercel.app/">View Demo</a>
+    ·
+    <a href="https://github.com/ryanagungsamudra/FAZZPAY/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/ryanagungsamudra/FAZZPAY/pulls">Request Feature</a>
+  </p>
+
+<img align="left" width="47%" src="https://user-images.githubusercontent.com/115606537/224932953-ef71b1cc-cc27-41d9-8f6d-3165209c7d38.png"/>
+<img align="left" width="47%" src="https://user-images.githubusercontent.com/115606537/224933124-092f435f-6920-4702-af6b-738cc42c5aae.png"/>
+<img align="left" width="47%" src="https://user-images.githubusercontent.com/115606537/224933418-918b8a8f-2e1e-49b2-a065-e3ccba5e991b.png"/>
+<img align="center" width="47%" src="https://user-images.githubusercontent.com/115606537/224933742-fba6ff2f-b9f0-42e4-955d-685d09a7b198.png"/>
+
+## Table of Contents
+
+- [About the Project](#about-the-project)
+  - [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+
+## About The Project
+
+Fazzpay is a digital financial service which acts as a digital payment or E-Wallet. This project was developed using a framework/library Next JS and Tailwind CSS. In the backend using Node JS, Express JS, and PostgreSQL for the database.
+
+### Built With
+
+- [React](https://reactjs.org/)
+- [Other dependencies]
 
 ## Getting Started
 
-First, run the development server:
+To get a local copy up and running follow these simple steps.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[Pre-requisites that need to be installed on the local machine before running the application]
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Installation
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Clone the repo
+   ```sh
+   git clone https://github.com/ryanagungsamudra/FAZZPAY.git
