@@ -1,4 +1,5 @@
 # <h1 align="center">FAZZPAY</h1>
+This is a frontend part for [api project](https://github.com/ryanagungsamudra/backend-FAZZPAY)
 
  <p align="center">
     <a href="https://yannnfazzpay.vercel.app/">View Demo</a>
